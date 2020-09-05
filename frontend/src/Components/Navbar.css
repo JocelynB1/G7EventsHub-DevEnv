@@ -1,0 +1,51 @@
+
+/**/
+#pic_logo{
+    width: 100%;
+    height: 100%;
+   
+  }
+  .logo1{
+    margin: 0;
+}
+  @media(min-width:851px){
+    nav{
+        display:flex;
+        /* border-bottom:1px solid #ccc; */
+     
+    }
+    a{
+       margin:0px;
+       padding: 2px 2px;
+       border-radius:2px 2px 0 0;
+       text-decoration: none;
+       color:black; 
+    }
+    a:hover,a:focus,a:active{
+              background-color: #270949;
+
+        text-decoration: underline;
+        color: white;
+    }
+    
+  }
+  @media(max-width:850px){
+    nav{
+        display:flex;
+        flex-direction: column;
+        border-bottom:1px solid #ccc;
+     
+    }
+    a{
+       margin:0px;
+       padding: 3px 10px;
+       border-radius:3px 3px 0 0;
+       text-decoration: none;
+       text-align: center;
+       color:black; 
+    }
+    a:hover,a:focus,a:active{
+        background-color:#ffcc22;
+        text-decoration: underline;
+    }
+  }
