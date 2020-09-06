@@ -33,8 +33,10 @@ class Login extends React.Component {
     render() {
         return (
             <>
-                <h2>Login</h2>
+                <div className="form">
                 <form method="post">
+                <h2>Login</h2>
+
                     <p>
                         <label htmlFor="id_username">Username:</label>
                         <input type="text" name="username" autoFocus autoCapitalize="none" autoComplete="username" maxLength="150" required id="id_username"
@@ -44,8 +46,9 @@ class Login extends React.Component {
                         <input type="password" name="password" autoComplete="current-password" required id="id_password"
                             value={this.state.credentials.password} onChange={this.handleChange} />
                     </p>
-                    <button onClick={this.postLogin}  type="submit">Login</button>
+                    <button onClick={this.postLogin} className="button"  type="submit">Login</button>
                 </form>
+                </div>
             </>
         );
     }

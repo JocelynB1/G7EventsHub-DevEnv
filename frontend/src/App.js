@@ -1,17 +1,18 @@
 import React from 'react';
 import './App.css';
-import axios from "axios";
-import Login from "./Components/Login";
+import './Components/main.css';
 import Navbar from "./Components/Navbar";
 import Welcome from "./Components/Welcome";
-import Form from'./Components/Form';
+import FormComponent from "./Components/FormComponent"
 class App extends React.Component{
   constructor(props) {
     super(props);
     this.state={
       details:[],
       token:"",
-        credentials: { username: "", password: "" }
+        credentials: { username: "", password: "" },
+        requestedComponent:"login"
+
     
     }
  }
@@ -22,24 +23,6 @@ class App extends React.Component{
       this.loadDetails()
 
  }
-  // state={
-  //   details:[]
-  // };
-
-  // componentDidMount(){
-  //   this.getDetails();
-  // }
-
-  // getDetails(){
-  //   // axios
-  //   // .get("http://127.0.0.1:8000/api/")
-  //   // .then(res=>{
-  //   //   this.setState({details:res.data});
-  //   // })
-  //   // .catch(err=>{
-  //   //   console.log(err);
-  //   // });
-  // }
   loadDetails(){
 
         fetch("http://127.0.0.1:8000/api/details/",
@@ -64,11 +47,13 @@ class App extends React.Component{
    render(){
     return(
       <>
+      <div className="container">
       <Navbar/>
+      <br/>
       <Welcome/>
-      <Form/>
+      <FormComponent formType={this.state.requestedComponent} onLogin={this.handleLogin} />
+      </div>
       <br></br>
-        <Login onLogin={this.handleLogin}/>
         { this.state.details.map(
           user => (
           <div key={user.user}>

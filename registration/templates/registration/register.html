@@ -1,0 +1,123 @@
+{% load static %}
+<style>
+    .alert.alert-danger {
+        background-color: bisque;
+        color: red;
+    }
+    .errorlist li{
+        list-style-type: none;
+        background-color: bisque;
+        color: red;
+        
+    }
+    body {
+     /* background-color: #270949; */
+    color: #270949;
+    margin: 10px;
+    padding-top: 300px;
+    padding: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    
+    }
+
+    .App {
+      display: flex;
+      flex-direction: row;
+      float: center;
+      padding-left: 40px;
+      margin-left: 90px;
+    }
+
+    .logo {
+        width: 500px;
+        height: 500px;
+        padding: 10px;
+        padding-right: 50px;
+        margin: 10px;
+    }
+    
+    /* .welcome {
+      width: 250px;
+      height: 150px;
+
+        } */
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      margin-left: 20px;
+      padding-left: 20;
+    }    
+
+    
+    .form {
+      background-color: #270949;
+      height: 450px;
+      width: 450px;
+      color: white;
+      margin: 30px;
+      padding: 30px;
+      border-bottom-left-radius: 50px;
+      border-top-left-radius: 50px;
+      border: 5px solid  ;
+      display: flex;
+      float: right;
+      position: relative;
+      
+    }
+
+  .button {
+    
+    border: none;
+    color:#270949;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+  }  
+    
+  .radio {
+    padding-left: 35px;
+  }
+</style>
+<script>
+    window.onload = function (e) {
+
+        document.querySelector("#id_detail-0-date_of_birth").parentNode.removeChild(document.querySelector("#id_detail-0-date_of_birth"))
+        document.querySelector("#id_detail-0-phone_number").parentNode.removeChild(document.querySelector("#id_detail-0-phone_number"))
+        document.querySelector("#id_detail-0-city").parentNode.removeChild(document.querySelector("#id_detail-0-city"))
+        document.querySelector("#id_detail-0-address").parentNode.removeChild(document.querySelector("#id_detail-0-address"))
+
+        // document.querySelector("#id_date_of_birth_month") = "id_detail-0-date_of_birth";
+        // document.querySelector("#id_phone_number") = "id_detail-0-phone_number";
+        // document.querySelector("#id_city") = "id_detail-0-city";
+        // document.querySelector("#id_address") = "id_detail-0-address";
+
+
+    }
+</script>
+<h1>Create an account</h1>
+<p>Please, sign up using the following form:</p>
+
+{% if form.errors %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger">
+    <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %}
+{% endfor %}
+{% endif %}
+<div id="form">
+    <form method="post">
+        {{form.as_p}}
+        <div style="display: none;">
+            {{details.as_p}}
+        </div>
+        {% csrf_token %}
+
+</div>
+<p><input type="submit" value="Create my account"></p>

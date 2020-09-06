@@ -7,7 +7,7 @@ class Navbar extends React.Component{
 
    render(){
         return(
-            <nav className="navbar">
+            <nav className="menu">
             <div className="logo1">
                 <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
             </div>
