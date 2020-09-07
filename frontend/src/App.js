@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import "./Components/index.css";
 import './Components/main.css';
 import Navbar from "./Components/Navbar";
 import Welcome from "./Components/Welcome";
@@ -11,17 +12,20 @@ class App extends React.Component{
       details:[],
       token:"",
         credentials: { username: "", password: "" },
-        requestedComponent:"login"
-
+        requestedComponent:"login",
+        errors:[]
     
     }
  }
 
  handleLogin=(tk)=>{
-   console.log(tk)
-    this.setState({token:tk.token,credentials:tk.credentials })
-      this.loadDetails()
+   //console.log(tk.errors[1])
+   this.setState({token:tk.token,credentials:tk.credentials,errors:tk.errors })
+     // this.loadDetails()
 
+ }
+ handleMenuRequest=(rc)=>{
+  this.setState({requestedComponent:rc.requestedComponent})
  }
   loadDetails(){
 
@@ -48,10 +52,10 @@ class App extends React.Component{
     return(
       <>
       <div className="container">
-      <Navbar/>
+      <Navbar onSelect={this.handleMenuRequest} />
       <br/>
       <Welcome/>
-      <FormComponent formType={this.state.requestedComponent} onLogin={this.handleLogin} />
+      <FormComponent formType={this.state.requestedComponent} errors={this.state.errors} onLogin={this.handleLogin} />
       </div>
       <br></br>
         { this.state.details.map(

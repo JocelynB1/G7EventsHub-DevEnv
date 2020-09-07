@@ -1,10 +1,11 @@
 // importing react & css
 import React from 'react';
-import "./index.css";
-
-export const Form = () => {
+import Errors from "./Errors"; 
+export const Form = (props) => {
     return (
         <div className ="form">
+      <Errors errors={props.errors}/>
+            
             {/* craeting input fields for the sign up form */}
             <form>
 

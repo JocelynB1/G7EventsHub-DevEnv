@@ -12,15 +12,17 @@ body{
 .menu{
     grid-area:menu;
 }
+.menu a{
+    margin-left: 1em;
+}
 .Welcome{
     grid-area:Welcome;
 }
-.blog{
-    grid-area:blog;
-    background-color:lightskyblue;
+.errors{
+    list-style: none;
+   
 }
-.ads{
-    grid-area:ads;
-    background-color:burlywood;
-    display:flex;
+.errors li{
+    margin-bottom:1em;
+
 }

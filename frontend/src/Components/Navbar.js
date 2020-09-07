@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import menuLogo from "./img/logo.svg"
-
+import MenuItem from "./MenuItem"
 
 class Navbar extends React.Component{
 
@@ -11,10 +11,9 @@ class Navbar extends React.Component{
             <div className="logo1">
                 <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
             </div>
-             <a href="/">Home</a>
-            <a href="/about">Menu Item 1</a>
-            <a href="/blog">Menu Item 2</a>
-            <a href="/contact">Menu Item 3</a>
+            <MenuItem onSelect={this.props.onSelect} menulabel={"login"}  />
+          <MenuItem onSelect={this.props.onSelect} menulabel={"register"}  />
+            <MenuItem />
          
       </nav>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import Errors from "./Errors"; 
 
 
 class Login extends React.Component {
@@ -18,12 +19,35 @@ class Login extends React.Component {
                 body: JSON.stringify(this.state.credentials)
             }
         ).then(
-            data=>data.json()
-        )
-        .then(
-            data => this.props.onLogin({token:data.token,credentials:this.state.credentials})
 
-        ).catch(error => console.log(error))
+            //400
+            data => {
+
+                if (!data.ok) {
+                    //         console.log(data.text())
+                    data.json().then((err) => {
+                        let errorArr = []
+                        Object.keys(err).map(key =>
+                            errorArr.push(key+" : "+ err[key].pop())
+                        )
+                        this.props.onLogin({ token: "", credentials: "", errors: errorArr })
+
+                    });
+                } else {
+                    data.json().then(
+                        data => {
+                            console.log(data)
+
+                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, errors: [] })
+                        }
+
+                    ).catch(error => console.log(error)
+                        // this.props.onLogin({token:"abc",credentials:this.state.credentials,errors:error.text})
+                    )
+                }
+            }
+        )
+
     }
     handleChange = (event) => {
         const cred = this.state.credentials
@@ -34,20 +58,22 @@ class Login extends React.Component {
         return (
             <>
                 <div className="form">
-                <form method="post">
-                <h2>Login</h2>
+      <Errors errors={this.props.errors}/>
 
-                    <p>
-                        <label htmlFor="id_username">Username:</label>
-                        <input type="text" name="username" autoFocus autoCapitalize="none" autoComplete="username" maxLength="150" required id="id_username"
-                            value={this.state.credentials.username} onChange={this.handleChange} />
-                    </p>
-                    <p><label htmlFor="id_password">Password:</label>
-                        <input type="password" name="password" autoComplete="current-password" required id="id_password"
-                            value={this.state.credentials.password} onChange={this.handleChange} />
-                    </p>
-                    <button onClick={this.postLogin} className="button"  type="submit">Login</button>
-                </form>
+                    <form method="post">
+                        <h2>Login</h2>
+
+                        <p>
+                            <label htmlFor="id_username">Username:</label>
+                            <input type="text" name="username" autoFocus autoCapitalize="none" autoComplete="username" maxLength="150" required id="id_username"
+                                value={this.state.credentials.username} onChange={this.handleChange} />
+                        </p>
+                        <p><label htmlFor="id_password">Password:</label>
+                            <input type="password" name="password" autoComplete="current-password" required id="id_password"
+                                value={this.state.credentials.password} onChange={this.handleChange} />
+                        </p>
+                        <button onClick={this.postLogin} className="button" type="submit">Login</button>
+                    </form>
                 </div>
             </>
         );

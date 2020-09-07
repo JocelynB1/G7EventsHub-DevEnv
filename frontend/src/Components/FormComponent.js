@@ -5,12 +5,13 @@ import Form from './Form';
 
 
 function FormComponent(props) {
-    const formType = props.formType;
-    if (formType==="login") {
-    return <Login onLogin={props.onLogin}/>;
-    
-    }
-    return <Form />;
+  const formType = props.formType;
+  if (formType === "login") {
+    return <Login errors={props.errors} onLogin={props.onLogin} />;
   }
-  
-  export default FormComponent;
+  if (formType === "register") {
+    return <Form errors={props.errors}/>;
+  }
+}
+
+export default FormComponent;

@@ -5,7 +5,5 @@ from django.views.generic import TemplateView
 
 urlpatterns=[
 path("register/",views.RegisterUserWithDetails.as_view(),name="register"),
-path("register_done/",TemplateView.as_view(template_name="registration/register_done.html"),name="register_done"),
-# path("register/",views.register,name="register"),
- path("edit/",views.edit,name="edit")   
+path("register_done/",TemplateView.as_view(template_name="registration/register_done.html"),name="register_done"),   
 ];
