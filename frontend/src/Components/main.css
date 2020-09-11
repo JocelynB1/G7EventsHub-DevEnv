@@ -3,9 +3,10 @@ body{
 }
 .container{
     display: grid;
-    grid-template-columns: 10vw 40vw 40vw 10vw;
-    grid-template-rows: 10vh 50vh;
+    grid-template-columns: 10% 40% 40% 10%;
+    grid-template-rows: 5%  50%;
     grid-template-areas: "menu menu menu menu"
+                        /* "... errors errors ..." */
                         "... Welcome form ...";
     
 }
@@ -19,6 +20,7 @@ body{
     grid-area:Welcome;
 }
 .errors{
+    /* grid-area:errors; */
     list-style: none;
    
 }

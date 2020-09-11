@@ -8,7 +8,9 @@ function Errors(props) {
       </li>
     );
     return (
-      <ul className="errors">{items}</ul>
+      <div className="errors">
+      <ul>{items}</ul>
+      </div>
     );
   }
 

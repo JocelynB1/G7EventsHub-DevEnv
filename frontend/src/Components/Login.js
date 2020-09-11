@@ -1,5 +1,4 @@
 import React from 'react';
-import Errors from "./Errors"; 
 
 
 class Login extends React.Component {
@@ -12,7 +11,9 @@ class Login extends React.Component {
     postLogin = (event) => {
         event.preventDefault();
 
-        fetch("http://127.0.0.1:8000/auth/",
+
+         fetch("http://127.0.0.1:8000/auth/",
+        ///fetch("http://40.77.23.159:8080/auth/",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -30,15 +31,14 @@ class Login extends React.Component {
                         Object.keys(err).map(key =>
                             errorArr.push(key+" : "+ err[key].pop())
                         )
-                        this.props.onLogin({ token: "", credentials: "", errors: errorArr })
-
+                        this.props.onErrors({errors: errorArr})
                     });
                 } else {
                     data.json().then(
                         data => {
                             console.log(data)
 
-                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, errors: [] })
+                            this.props.onLogin({ token: data.token, credentials: this.state.credentials })
                         }
 
                     ).catch(error => console.log(error)
@@ -58,7 +58,7 @@ class Login extends React.Component {
         return (
             <>
                 <div className="form">
-      <Errors errors={this.props.errors}/>
+                    
 
                     <form method="post">
                         <h2>Login</h2>
