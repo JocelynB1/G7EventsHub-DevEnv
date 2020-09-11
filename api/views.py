@@ -6,14 +6,14 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UserSerializer ,SignUpSerializer, DetailSerializer,DeetsSerializer,RegistrationSerializer
+from .serializers import LoginSerializer ,SignUpSerializer, DetailSerializer,DeetsSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import transaction
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
-    serializer_class=UserSerializer
+    serializer_class=LoginSerializer
 
 class ListDetails(generics.ListAPIView):
     queryset=Detail.objects.all()
@@ -30,9 +30,10 @@ class SignUpViewSet(viewsets.ModelViewSet):
 
 class DetailViewSet(viewsets.ModelViewSet):
     queryset = Detail.objects.all()
-    serializer_class = RegistrationSerializer
-    #authentication_classes = [TokenAuthentication, ]
-   # permission_classes = [IsAuthenticated, ]
+    serializer_class = DetailSerializer
+    # authentication_classes = [TokenAuthentication, ]
+    # permission_classes = [IsAuthenticated, ]
+
 class SignupCreateView(CreateAPIView):
     serializer_class = SignUpSerializer
 

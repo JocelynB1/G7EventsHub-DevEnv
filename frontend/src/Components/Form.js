@@ -22,7 +22,7 @@ class Form extends React.Component {
         formData.append("city", document.querySelector("#city").value)
         formData.append("address", document.querySelector("#address").value)
         // fetch("http://127.0.0.1:8000/api/details/",
-        fetch("http://127.0.0.1:8000/api/register",
+        fetch("http://127.0.0.1:8000/api/register/",
             {
                 method: "POST",
                 body: formData
