@@ -35,6 +35,9 @@ class SignUpSerializer(serializers.ModelSerializer):
         model=User
         fields=("id","username","password","first_name","last_name","email")
         extra_kwargs={"password":{"write_only":True,"required":True}}
+
+    
+    
     
     def validate_password(self,value):
         try:

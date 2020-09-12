@@ -13,6 +13,7 @@ class Form extends React.Component {
         const formData = new FormData(document.querySelector("#form"))
         formData.append("first_name", document.querySelector("#first_name").value)
         formData.append("password", document.querySelector("#password").value)
+        formData.append("confirm_password", document.querySelector("#confirm_password").value)
         formData.append("last_name", document.querySelector("#last_name").value)
         formData.append("username", document.querySelector("#username").value)
         formData.append("phone_number", document.querySelector("#phone_number").value)
@@ -79,17 +80,17 @@ class Form extends React.Component {
 
                     <input type="password" required placeholder="Password *" id="password" className="password" />
 
-                    <input type="password" required placeholder="Confirm Password *" id="confirmPassword" className="confirmPassword" /><br />
+                    <input type="password" required placeholder="Confirm Password *" id="confirm_password" className="confirmPassword" /><br />
                     <label htmlFor="date_of_birth" >Date of birth
                     <input type="date" required placeholder="Date of birth*" id="date_of_birth" className="date_of_birth" />
                     </label>
 
                     {/* <label>City :</label> */}
-                    <input type="text" required placeholder="City *" id="city" className="city" height="25px" width="100px"  ></input>
+                    <input type="text" required placeholder="City *" id="city" className="city" height="25%" width="100%"  ></input>
                     {/* <label>Lastname :</label> */}
                     <input type="email" required placeholder="Email *" id="email" className="email" />
                     <br />
-                    <input type="text" required placeholder="Address *" id="address" className="address" width="200px" />
+                    <input type="text" required placeholder="Address *" id="address" className="address" width="200%" />
 
 
 

@@ -4,16 +4,25 @@ body{
 .container{
     display: grid;
     grid-template-columns: 10% 40% 40% 10%;
-    grid-template-rows: 5%  50%;
+    grid-template-rows: 20%  80%;
     grid-template-areas: "menu menu menu menu"
                         /* "... errors errors ..." */
-                        "... Welcome form ...";
+                        "... main main ...";
     
+}
+#main{
+    display: grid;
+    grid-area: main;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    grid-template-areas: "Welcome form"; 
 }
 .menu{
     grid-area:menu;
+   
 }
 .menu a{
+    margin-top: 2em;
     margin-left: 1em;
 }
 .Welcome{

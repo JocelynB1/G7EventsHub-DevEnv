@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "api",
     "registration",
     "signin",
+    "booking",
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders"

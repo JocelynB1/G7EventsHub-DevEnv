@@ -3,11 +3,9 @@ import './App.css';
 import "./Components/index.css";
 import './Components/main.css';
 import Navbar from "./Components/Navbar";
-import Welcome from "./Components/Welcome";
-import FormComponent from "./Components/FormComponent"
-import Errors from "./Components/Errors"; 
-
+import Main from "./Components/Main"
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +13,8 @@ class App extends React.Component {
       token: "",
       credentials: { username: "", password: "" },
       requestedComponent: "login",
-      errors: []
+      errors: [],
+      status: "SIGNED_OUT"
 
     }
   }
@@ -31,8 +30,7 @@ class App extends React.Component {
     }
   }
   handleLogin = (tk) => {
-    //console.log(tk.errors[1])
-    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors })
+    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors, status: tk.status, requestedComponent: tk.requestedComponent })
     this.loadDetails()
 
   }
@@ -48,7 +46,6 @@ class App extends React.Component {
           "Content-Type": "application/json",
           Authorization: `Token ${this.state.token}`
         },
-        // body: JSON.stringify(this.state.credentials)
 
       }
     ).then(
@@ -65,82 +62,22 @@ class App extends React.Component {
   render() {
     return (
       <>
-          {this.state.details.map(
-          user => (
-            <div key={user.user}>
-              <ul>
-                <li>
-                  {user.date_of_birth}
-                </li>
 
-                <li>
-                  {user.phone_number}
-                </li>
-
-                <li>
-                  {user.city}
-                </li>
-
-                <li>
-                  {user.address}
-                </li>
-
-                <li>
-                  {user.first_name}
-                </li>
-
-                <li>
-                  {user.last_name}
-                </li>
-
-                <li>
-                  {user.email}
-                </li>
-              </ul>
-            </div>
-          ))}
         <div className="container">
-          <Navbar onSelect={this.handleMenuRequest} />
+          <Navbar onSelect={this.handleMenuRequest}
+            status={this.state.status} />
           {/* <Errors errors={this.state.errors}/> */}
           <br />
-          <Welcome />
-          <FormComponent formType={this.state.requestedComponent} onErrors={this.handleErrors} onRegistration={this.handleRegistration} onLogin={this.handleLogin} />
+          <Main
+            details={this.state.details}
+            requestedComponent={this.state.requestedComponent}
+            onErrors={this.handleErrors}
+            onRegistration={this.handleRegistration}
+            onLogin={this.handleLogin}
+          />
         </div>
         <br></br>
-        {this.state.details.map(
-          user => (
-            <div key={user.user}>
-              <ul>
-                <li>
-                  {user.date_of_birth}
-                </li>
 
-                <li>
-                  {user.phone_number}
-                </li>
-
-                <li>
-                  {user.city}
-                </li>
-
-                <li>
-                  {user.address}
-                </li>
-
-                <li>
-                  {user.first_name}
-                </li>
-
-                <li>
-                  {user.last_name}
-                </li>
-
-                <li>
-                  {user.email}
-                </li>
-              </ul>
-            </div>
-          ))}
       </>
     );
   }

@@ -31,8 +31,8 @@ class SignUpViewSet(viewsets.ModelViewSet):
 class DetailViewSet(viewsets.ModelViewSet):
     queryset = Detail.objects.all()
     serializer_class = DetailSerializer
-    # authentication_classes = [TokenAuthentication, ]
-    # permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
 
 class SignupCreateView(CreateAPIView):
     serializer_class = SignUpSerializer

@@ -1,22 +1,18 @@
 import React from 'react';
 import './Navbar.css';
 import menuLogo from "./img/logo.svg"
-import MenuItem from "./MenuItem"
+import MenuOptions from "./MenuOptions"
+class Navbar extends React.Component {
 
-class Navbar extends React.Component{
-
-   render(){
-        return(
-            <nav className="menu">
-            <div className="logo1">
-                <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
-            </div>
-            <MenuItem onSelect={this.props.onSelect} menulabel={"login"}  />
-          <MenuItem onSelect={this.props.onSelect} menulabel={"register"}  />
-            <MenuItem />
-         
+  render() {
+    return (
+      <nav className="menu">
+        <div className="logo1">
+          <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
+        </div>
+           <MenuOptions onSelect={this.props.onSelect} status={this.props.status}/>
       </nav>
-        )
-    }
+    )
+  }
 }
 export default Navbar;

@@ -1,29 +1,19 @@
 body {
      /* background-color: #270949; */
     color: #270949;
-    margin: 10px;
-    padding-top: 300px;
-    padding: 50px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 25px;
     
     }
 
-    .App {
-      display: flex;
-      flex-direction: row;
-      float: center;
-      padding-left: 40px;
-      margin-left: 90px;
-    }
 
     .logo {
         grid-area:logo;
-        width: 500px;
-        height: 500px;
-        padding: 10px;
-        padding-right: 50px;
-        margin: 10px;
+        width: 50%;
+        height: 100%;
+        padding: 0.02%;
+        padding-right: 0.1%;
+        margin: 0.02%;
     }
     
     /* .welcome {
@@ -33,24 +23,27 @@ body {
         } */
 
     input {
-      padding: 10px;
-      margin: 10px;
-      margin-left: 20px;
-      padding-left: 20;
+      padding: 0.8em;
+      margin: 0.8em;
+      margin-left: 1em;
+      padding-left: 1em;
     }    
-
-    
+    /* padding: 2.5%;
+    margin: 2.5%;
+    margin-left: 5%;
+    padding-left:5% */
+     
     .form {
     
       background-color: #270949;
       height: 100%;
       width: 60%;
       color: white;
-      margin: 30px;
-      padding: 30px;
-      border-bottom-left-radius: 50px;
-      border-top-left-radius: 50px;
-      border: 5px solid  ;
+      margin: 1.2em;
+      padding: 1.2em;
+      border-bottom-left-radius: 10%;
+      border-top-left-radius: 10%;
+      border: 20% solid  ;
       display: flex;
       float: right;
       position: relative;

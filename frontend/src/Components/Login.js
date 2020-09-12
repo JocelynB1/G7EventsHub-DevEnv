@@ -11,7 +11,7 @@ class Login extends React.Component {
     postLogin = (event) => {
         event.preventDefault();
 
-
+console.log(JSON.stringify(this.state.credentials))
          fetch("http://127.0.0.1:8000/auth/",
         ///fetch("http://40.77.23.159:8080/auth/",
             {
@@ -38,7 +38,7 @@ class Login extends React.Component {
                         data => {
                             console.log(data)
 
-                            this.props.onLogin({ token: data.token, credentials: this.state.credentials })
+                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, status:"ATTENDEE_SIGNED_IN",requestedComponent:"profile" })
                         }
 
                     ).catch(error => console.log(error)
@@ -58,8 +58,6 @@ class Login extends React.Component {
         return (
             <>
                 <div className="form">
-                    
-
                     <form method="post">
                         <h2>Login</h2>
 
