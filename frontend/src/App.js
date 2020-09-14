@@ -35,6 +35,12 @@ class App extends React.Component {
 
   }
   handleMenuRequest = (rc) => {
+    if (rc.requestedComponent === "log out") {
+      this.setState({ status: "SIGNED_OUT" })
+      this.setState({ credentials: { username: "", password: "" } })
+      this.setState({ requestedComponent: "login" })
+    
+    }
     this.setState({ requestedComponent: rc.requestedComponent })
   }
   loadDetails() {
@@ -65,7 +71,9 @@ class App extends React.Component {
 
         <div className="container">
           <Navbar onSelect={this.handleMenuRequest}
-            status={this.state.status} />
+            status={this.state.status}
+            requestedComponent={this.state.requestedComponent}
+          />
           {/* <Errors errors={this.state.errors}/> */}
           <br />
           <Main

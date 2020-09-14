@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="menu">
+        <div class="logo1">
+            <img src="{% static 'img/logo.svg' %}" alt="" srcset="" id="pic_logo">
+        </div>
+        <a href="{% url 'booking' %}">booking</a>
+        <a href="{% url 'addBooking' %}">Add Booking</a>
+        <a href="{% url 'addEvent' %}">Add Event</a>
+        <a href="{% url 'addLocation' %}">Add Location</a>
+        <a href="{% url 'addSession' %}">Add Session</a>
+        <a href="{% url 'addSpeaker' %}">Add Speaker</a>
+     </nav>
+    {% block content %}
+    {% endblock %}
+
+</body>

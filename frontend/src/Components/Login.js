@@ -11,9 +11,9 @@ class Login extends React.Component {
     postLogin = (event) => {
         event.preventDefault();
 
-console.log(JSON.stringify(this.state.credentials))
-         fetch("http://127.0.0.1:8000/auth/",
-        ///fetch("http://40.77.23.159:8080/auth/",
+        console.log(JSON.stringify(this.state.credentials))
+        fetch("http://127.0.0.1:8000/auth/",
+            ///fetch("http://40.77.23.159:8080/auth/",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -29,16 +29,16 @@ console.log(JSON.stringify(this.state.credentials))
                     data.json().then((err) => {
                         let errorArr = []
                         Object.keys(err).map(key =>
-                            errorArr.push(key+" : "+ err[key].pop())
+                            errorArr.push(key + " : " + err[key].pop())
                         )
-                        this.props.onErrors({errors: errorArr})
+                        this.props.onErrors({ errors: errorArr })
                     });
                 } else {
                     data.json().then(
                         data => {
                             console.log(data)
 
-                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, status:"ATTENDEE_SIGNED_IN",requestedComponent:"profile" })
+                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN", requestedComponent: "profile" })
                         }
 
                     ).catch(error => console.log(error)

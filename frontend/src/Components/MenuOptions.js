@@ -9,7 +9,6 @@ class MenuOptions extends React.Component {
             details: [],
             token: "",
             credentials: { username: "", password: "" },
-            requestedComponent: "login",
             status: {
                 SIGNED_OUT: ["register", "login"],
                 ATTENDEE_SIGNED_IN: ["profile","log out"],
@@ -20,9 +19,12 @@ class MenuOptions extends React.Component {
         }
     }
     render() {
+        let status=this.state.status[this.props.status]
+
         return (
-            this.state.status[this.props.status].map(
+            status.map(
                 option => {
+                    
                     return (<MenuItem key={option} onSelect={this.props.onSelect} menulabel={option} />)
                 }
             )

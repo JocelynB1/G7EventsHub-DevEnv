@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Detail
+from booking.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation
@@ -104,3 +105,50 @@ class DetailSerializer(serializers.ModelSerializer):
         "email":email
     })
         return internal_value
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Location
+        fields=["name","city","address","room_capacity"]
+
+class EventSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Event
+        fields=["location","name","tag_line","title"]
+        # fields=["location","name","tag_line","title","start_time","end_time"]
+
+
+class SpeakerSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Speaker
+        fields=["name","phone_number","email"]
+
+
+class SessionSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Session
+        fields=["description"]
+        
+class BookingSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Booking
+        fields=["user","event","session","seats"]
+    user=serializers.SerializerMethodField()
+
+    def get_user(self,obj):
+        return User.objects.get(id=obj.user_id).first_name+" "+User.objects.get(id=obj.user_id).last_name
+
+        
+
+

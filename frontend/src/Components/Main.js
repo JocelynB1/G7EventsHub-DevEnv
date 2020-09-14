@@ -22,7 +22,7 @@ class MenuOptions extends React.Component {
         }
     }
     render() {
-        if(this.props.requestedComponent=="login"){
+        if(this.props.requestedComponent=="login"||this.props.requestedComponent=="register"){
             return (
             
                 <section id="main">

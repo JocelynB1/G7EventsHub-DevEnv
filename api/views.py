@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from .models import Detail
 from rest_framework import generics,permissions,viewsets
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView,ListAPIView
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .serializers import LoginSerializer ,SignUpSerializer, DetailSerializer,DeetsSerializer
+from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import transaction
+
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
@@ -29,7 +30,10 @@ class SignUpViewSet(viewsets.ModelViewSet):
     serializer_class=SignUpSerializer
 
 class DetailViewSet(viewsets.ModelViewSet):
-    queryset = Detail.objects.all()
+    queryset=Detail.objects.all()
+    def get_queryset(self):
+        user = self.request.user
+        return  Detail.objects.filter(user=user)
     serializer_class = DetailSerializer
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
@@ -62,3 +66,26 @@ class SignupCreateView(CreateAPIView):
                detail.save()
                return Response(status=status.HTTP_200_OK)
       transaction.rollback()
+
+class LocationCreateView(CreateAPIView):
+    serializer_class = LocationSerializer
+
+class EventCreateView(CreateAPIView):
+    serializer_class = EventSerializer
+class SpeakerCreateView(CreateAPIView):
+    serializer_class = SpeakerSerializer
+
+class SessionCreateView(CreateAPIView):
+    serializer_class = SessionSerializer
+
+class BookingCreateView(CreateAPIView):
+    serializer_class = BookingSerializer
+
+class EventList(ListAPIView):
+    serializer_class = EventSerializer
+    queryset=Event.objects.all()
+    
+class BookingList(ListAPIView):
+    serializer_class = BookingSerializer
+    queryset=Booking.objects.all()
+    

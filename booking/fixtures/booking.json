@@ -1,0 +1,59 @@
+[
+    {
+        "model": "booking.session",
+        "pk": 1,
+        "fields": {
+            "description": "Morning"
+        }
+    },
+    {
+        "model": "booking.session",
+        "pk": 2,
+        "fields": {
+            "description": "Afternoon"
+        }
+    },
+    {
+        "model": "booking.session",
+        "pk": 3,
+        "fields": {
+            "description": "Evening"
+        }
+    }
+    ,
+    {
+        "model": "booking.location",
+        "pk": 1,
+        "fields": {
+            "name": "Ghana National Theatre",
+            "address":"South Liberia Road",
+            "city":"Accra",
+            "room_capacity":1500
+        }
+    }
+    ,
+    {
+        "model": "booking.location",
+        "pk": 2,
+        "fields": {
+            "name": "Accra International Conference Centre",
+            "address":"Castle Rd",
+            "city":"Accra",
+            "room_capacity":2500
+        }
+    }
+    ,
+    {
+        "model": "booking.speaker",
+        "pk": 1,
+        "fields": {
+            "name": "Kwame Speakerson",
+            "phone_number":"0203252874",
+            "email":"kwamespeakerson@speakers.com"
+        }
+    }
+    
+
+    
+    
+]
