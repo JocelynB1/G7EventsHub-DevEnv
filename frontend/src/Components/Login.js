@@ -1,11 +1,10 @@
 import React from 'react';
 
-
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            credentials: { username: "", password: "" }
+            credentials: { username: "", password: "" },
         }
     }
     postLogin = (event) => {
@@ -36,8 +35,6 @@ class Login extends React.Component {
                 } else {
                     data.json().then(
                         data => {
-                            console.log(data)
-
                             this.props.onLogin({ token: data.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN", requestedComponent: "profile" })
                         }
 
@@ -54,7 +51,10 @@ class Login extends React.Component {
         cred[event.target.name] = event.target.value
         this.setState({ credentials: cred });
     }
-    render() {
+    
+    render(){ 
+
+ 
         return (
             <>
                 <div className="form">

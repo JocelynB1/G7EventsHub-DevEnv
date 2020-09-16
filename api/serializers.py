@@ -76,10 +76,13 @@ class DetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Detail
-        fields=("first_name","last_name","email","username","date_of_birth","phone_number","city","address")
+        fields=("user_id", "first_name","last_name","email","username","date_of_birth","phone_number","city","address")
 
     def get_first_name(self,obj):
         return Detail.objects.get(user_id=obj.user_id).user.first_name
+
+    def get_user_id(self,obj):
+        return obj.user_id
 
     def get_last_name(self,obj):
         return Detail.objects.get(user_id=obj.user_id).user.last_name
@@ -112,15 +115,14 @@ class LocationSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Location
-        fields=["name","city","address","room_capacity"]
+        fields=["id","name","city","address","room_capacity"]
 
 class EventSerializer(serializers.ModelSerializer):
     """
     """
     class Meta:
         model = Event
-        fields=["location","name","tag_line","title"]
-        # fields=["location","name","tag_line","title","start_time","end_time"]
+        fields=["id","location","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
 
 
 class SpeakerSerializer(serializers.ModelSerializer):
@@ -136,7 +138,7 @@ class SessionSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Session
-        fields=["description"]
+        fields=["id","description"]
         
 class BookingSerializer(serializers.ModelSerializer):
     """

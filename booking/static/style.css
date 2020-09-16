@@ -119,19 +119,24 @@ body {
    
      background-color: #270949;
      height: 100%;
-     width: 60%;
+     width: 100%;
      color: white;
      margin: 1.2em;
      padding: 1.2em;
-     border-bottom-left-radius: 10%;
-     border-top-left-radius: 10%;
-     border: 20% solid  ;
      display: flex;
-     float: right;
-     position: relative;
      
    }
-
+   .edit{
+       background-color: green;
+       
+   }
+   .delete{
+       background-color: red;
+   }
+/*       
+        tr:nth-child(even) { 
+            background-color: Lightgreen; 
+        }  */
  .button {
    border: none;
    color:#270949;

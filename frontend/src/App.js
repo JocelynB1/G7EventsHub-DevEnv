@@ -3,7 +3,14 @@ import './App.css';
 import "./Components/index.css";
 import './Components/main.css';
 import Navbar from "./Components/Navbar";
-import Main from "./Components/Main"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import LoginPage from "./Components/LoginPage"
+import LogoutPage from "./Components/LogoutPage"
+import Profile from './Components/Profile';
+import SignupPage from './Components/SignupPage';
+import BookAnEventPage from './Components/BookAnEventPage';
+import { Redirect } from "react-router-dom";
+
 class App extends React.Component {
 
   constructor(props) {
@@ -14,7 +21,9 @@ class App extends React.Component {
       credentials: { username: "", password: "" },
       requestedComponent: "login",
       errors: [],
-      status: "SIGNED_OUT"
+      status: "SIGNED_OUT",
+      redirect: null
+
 
     }
   }
@@ -30,64 +39,144 @@ class App extends React.Component {
     }
   }
   handleLogin = (tk) => {
-    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors, status: tk.status, requestedComponent: tk.requestedComponent })
-    this.loadDetails()
+    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors, status: tk.status, requestedComponent: tk.requestedComponent, redirect: "/profile" })
+
 
   }
+  handleLoggout = (tk) => {
+    this.setState({ token: tk.token, credentials: tk.credentials, status: tk.status })
+
+  }
+
   handleMenuRequest = (rc) => {
     if (rc.requestedComponent === "log out") {
       this.setState({ status: "SIGNED_OUT" })
       this.setState({ credentials: { username: "", password: "" } })
       this.setState({ requestedComponent: "login" })
-    
+
     }
     this.setState({ requestedComponent: rc.requestedComponent })
   }
-  loadDetails() {
-
-    fetch("http://127.0.0.1:8000/api/details/",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${this.state.token}`
-        },
-
-      }
-    ).then(
-      data => data.json()
-
-    ).then(
-      data => this.setState({ details: data }),
-    )
-      .then(
-
-      ).catch(error => console.log(error))
-
-  }
   render() {
-    return (
-      <>
+    if (this.state.redirect) {
 
-        <div className="container">
-          <Navbar onSelect={this.handleMenuRequest}
-            status={this.state.status}
-            requestedComponent={this.state.requestedComponent}
-          />
-          {/* <Errors errors={this.state.errors}/> */}
-          <br />
-          <Main
+      if (this.state.token === "") {
+        return <Router>
+          <div className="container">
+            <Navbar
+              token={this.state.token}
+              onSelect={this.handleMenuRequest}
+              status={this.state.status}
+              requestedComponent={this.state.requestedComponent}
+            />
+
+            <Switch>
+              <Route path="/" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
+              <Route path="/login" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
+              <Route path="/register" exact render={props => <SignupPage {...props} token={this.state.token} onRegistration={this.handleRegistration} onErrors={this.handleErrors} />} />
+              {/* <Main
             details={this.state.details}
             requestedComponent={this.state.requestedComponent}
             onErrors={this.handleErrors}
             onRegistration={this.handleRegistration}
             onLogin={this.handleLogin}
-          />
-        </div>
-        <br></br>
+          /> */}
+            </Switch>
+          </div>
 
-      </>
-    );
+          <Redirect to={this.state.redirect} /></Router>
+
+      } else {
+        return <Router>
+          <div className="container">
+            <Navbar
+              token={this.state.token}
+              onSelect={this.handleMenuRequest}
+              status={this.state.status}
+              requestedComponent={this.state.requestedComponent}
+            />
+            <Switch>
+              <Route path="/logout" exact render={props => <LogoutPage {...props} onLogout={this.handleLoggout} />} />
+              <Route path="/" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
+              <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
+              <Route path="/bookAnEvent" exact render={props => <BookAnEventPage {...props} onErrors={this.handleErrors} token={this.state.token} />} />
+
+              {/* <Main
+            details={this.state.details}
+            requestedComponent={this.state.requestedComponent}
+            onErrors={this.handleErrors}
+            onRegistration={this.handleRegistration}
+            onLogin={this.handleLogin}
+          /> */}
+            </Switch>
+          </div>
+
+          <Redirect to={this.state.redirect} /></Router>
+      }
+
+
+    }
+    if (this.state.token === "") {
+      return (
+        <>
+          <Router>
+            <div className="container">
+              <Navbar
+                token={this.state.token}
+                onSelect={this.handleMenuRequest}
+                status={this.state.status}
+                requestedComponent={this.state.requestedComponent}
+              />
+
+              <Switch>
+                <Route path="/" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
+                <Route path="/login" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
+                <Route path="/register" exact render={props => <SignupPage {...props} token={this.state.token}  onRegistration={this.handleRegistration} onErrors={this.handleErrors} />} />
+
+                {/* <Main
+            details={this.state.details}
+            requestedComponent={this.state.requestedComponent}
+            onErrors={this.handleErrors}
+            onRegistration={this.handleRegistration}
+            onLogin={this.handleLogin}
+          /> */}
+              </Switch>
+            </div>
+          </Router>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Router>
+            <div className="container">
+              <Navbar
+                token={this.state.token}
+                onSelect={this.handleMenuRequest}
+                status={this.state.status}
+                requestedComponent={this.state.requestedComponent}
+              />
+
+              <Switch>
+                <Route path="/logout" exact render={props => <LogoutPage {...props} onLogout={this.handleLoggout} />} />
+                <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
+                <Route path="/" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
+                <Route path="/bookAnEvent" exact render={props => <BookAnEventPage {...props} onErrors={this.handleErrors} token={this.state.token} />} />
+
+                {/* <Main
+                  details={this.state.details}
+                  requestedComponent={this.state.requestedComponent}
+                  onErrors={this.handleErrors}
+                  onRegistration={this.handleRegistration}
+                  onLogin={this.handleLogin}
+                /> */}
+              </Switch>
+            </div>
+          </Router>
+        </>
+      );
+
+    }
   }
 }
 

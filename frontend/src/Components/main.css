@@ -10,6 +10,18 @@ body{
                         "... main main ...";
     
 }
+ul{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    
+}
+#table-main{
+    display: grid;
+    grid-area:main;
+    table-layout: auto;
+}
 #main{
     display: grid;
     grid-area: main;

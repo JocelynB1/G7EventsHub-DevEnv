@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+{% if booking %}
+<table>
+    <caption>Booking</caption>
+    <thead>
+        <tr>
+            <th>user</th>
+            <th>event</th>
+            <th>session</th>
+            <th>seats</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in page_obj %}
+        <tr>
+            <td>{{booking.user}}</td>
+            <td>{{booking.event}}</td>
+            <td>{{booking.session}}</td>
+            <td>{{booking.seats}}</td>
+            <th><form action="{% url 'updateBooking' booking.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
+            <th><form action="{% url 'deleteBooking' booking.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+{% endif %}
+
+{% endblock %}

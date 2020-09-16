@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+fields=["user","event","session","seats"]
+
+{% load static %}
+{% block content %}
+{% if session %}
+<table>
+    <caption>Session</caption>
+    <thead>
+        <tr>
+            <th>description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in page_obj %}
+        <tr>
+            <td>{{session.description}}</td>
+            <th><form action="{% url 'updateSession' session.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
+            <th><form action="{% url 'deleteSession' session.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+{% endif %}
+
+{% endblock %}

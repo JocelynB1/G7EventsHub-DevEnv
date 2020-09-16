@@ -8,7 +8,8 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(Event)        
 class EventAdmin(admin.ModelAdmin):
-    list_display=["name","tag_line","title"]
+    list_display=["name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
+
 
 @admin.register(Speaker)
 class SpeakerAdmin(admin.ModelAdmin):

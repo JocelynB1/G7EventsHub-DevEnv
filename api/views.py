@@ -72,6 +72,7 @@ class LocationCreateView(CreateAPIView):
 
 class EventCreateView(CreateAPIView):
     serializer_class = EventSerializer
+
 class SpeakerCreateView(CreateAPIView):
     serializer_class = SpeakerSerializer
 
@@ -80,6 +81,8 @@ class SessionCreateView(CreateAPIView):
 
 class BookingCreateView(CreateAPIView):
     serializer_class = BookingSerializer
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
 
 class EventList(ListAPIView):
     serializer_class = EventSerializer
@@ -88,4 +91,24 @@ class EventList(ListAPIView):
 class BookingList(ListAPIView):
     serializer_class = BookingSerializer
     queryset=Booking.objects.all()
+    
+class SessionList(ListAPIView):
+    serializer_class = SessionSerializer
+    queryset=Session.objects.all()
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+
+class EventList(ListAPIView):
+    serializer_class = EventSerializer
+    queryset=Event.objects.all()
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+
+class LocationList(ListAPIView):
+    serializer_class = LocationSerializer
+    queryset=Location.objects.all()
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+
+    
     
