@@ -73,7 +73,7 @@ class Session(models.Model):
 
 
 class Booking(models.Model):
-    user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user=models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     event=models.ForeignKey(to=Event, on_delete=models.CASCADE)
     session=models.ForeignKey(to=Session, on_delete=models.CASCADE)
     seats=models.IntegerField()

@@ -1,16 +1,6 @@
 body{
     margin:0;
 }
-#booking_dashboard{
-    display: grid;
-    grid-template-columns: 5% 30% 30% 30% 5%;
-    grid-template-rows: 20%  20% 20% 30%;
-    row-gap: 2em;
-    grid-template-areas: "menu menu menu menu menu"
-                        "... session speaker location ..."
-                         "...  event event booking  ...";
-   
-}
 #add_form_grid{
     display: grid;
     grid-template-columns: 5% 90 5%;
@@ -46,12 +36,39 @@ body{
 }
 .container{
     display: grid;
-    grid-template-columns: 10% 40% 40% 10%;
-    grid-template-rows: 20%  80%;
+    grid-template-columns: 10vw 40vw 40vw 10vw;
+    grid-template-rows: 20vh  70vh;
     grid-template-areas: "menu menu menu menu"
                         /* "... errors errors ..." */
                         "... main main ...";
     
+}
+
+#booking_dashboard{
+    display: grid;
+    grid-area: main;
+    grid-template-columns: 5vw 30vw 30vw 30vw 5vw;
+    grid-template-rows: 30vh  30vh  ;
+    grid-template-areas: 
+                        "... session speaker location ..."
+                         "...  event event booking  ...";
+   
+}
+#main-table{
+    display: grid;
+    grid-area: main;
+    grid-template-columns: 5vw 30vw 30vw 30vw 5vw;
+    grid-template-rows: 70vh  10vh  ;
+    grid-template-areas: 
+                        "... table table table ..."
+                        "... pagination pagination pagination ...";
+    
+}
+.show-table{
+    grid-area: table;
+}
+.pagination{
+    grid-area:pagination;
 }
 #main{
     display: grid;

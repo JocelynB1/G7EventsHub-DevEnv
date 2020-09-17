@@ -2,13 +2,8 @@
 import React from 'react';
 import Errors from "./Errors";
 
-class Form extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
-    postSignUp = (event) => {
+function Form(props) {
+   let postSignUp =async  (event) => {
         event.preventDefault();
         const formData = new FormData(document.querySelector("#form"))
         formData.append("first_name", document.querySelector("#first_name").value)
@@ -22,43 +17,68 @@ class Form extends React.Component {
         formData.append("date_of_birth", document.querySelector("#date_of_birth").value)
         formData.append("city", document.querySelector("#city").value)
         formData.append("address", document.querySelector("#address").value)
-        // fetch("http://127.0.0.1:8000/api/details/",
-        fetch("http://127.0.0.1:8000/api/register/",
-            {
-                method: "POST",
-                body: formData
-            }
-        ).then(
-
-            //400
-            data => {
-
-                if (!data.ok) {
-                    //         console.log(data.text())
-                    data.json().then((err) => {
-                        let errorArr = []
-                        Object.keys(err).map(key =>
-                            errorArr.push(key + " : " + err[key])
-                        )
-                        this.props.onErrors({ errors: errorArr })
-
-                    });
-                } else {
-                    data.json().then(
-                        data => {
-                            console.log(data)
-                        }
-
-                    ).catch(error =>
-                        this.props.onErrors({ errors: error.text })
-
+       let data =await fetch("http://127.0.0.1:8000/api/register/",
+        {
+            method: "POST",
+            body: formData
+        })
+        try{
+            
+            if (!data.ok) {
+                let err = await data.json()
+              
+               
+                    let errorArr = []
+                    Object.keys(err).map(key =>
+                        errorArr.push(key + " : " + err[key])
                     )
-                }
-            }
-        )
-    }
+                    props.onErrors({ errors: errorArr })
 
-    render() {
+             
+            } else {
+                let d = await data.json()
+                console.log(d)
+            }
+            
+                
+            
+        } catch(error){
+            props.onErrors({ errors: error.text })
+     }
+    //     fetch("http://127.0.0.1:8000/api/register/",
+    //         {
+    //             method: "POST",
+    //             body: formData
+    //         }
+    //     ).then(
+
+    //         data => {
+
+    //             if (!data.ok) {
+    //                 //         console.log(data.text())
+    //                 data.json().then((err) => {
+    //                     let errorArr = []
+    //                     Object.keys(err).map(key =>
+    //                         errorArr.push(key + " : " + err[key])
+    //                     )
+    //                     props.onErrors({ errors: errorArr })
+
+    //                 });
+    //             } else {
+    //                 data.json().then(
+    //                     data => {
+    //                         console.log(data)
+    //                     }
+
+    //                 ).catch(error =>
+    //                     props.onErrors({ errors: error.text })
+
+    //                 )
+    //             }
+    //         }
+    //     )
+     }
+
         return (
             <div className="form" >
 
@@ -94,7 +114,7 @@ class Form extends React.Component {
 
 
 
-                    <input type="button" onClick={this.postSignUp} className="button" value="Sign Up" />
+                    <input type="button" onClick={postSignUp} className="button" value="Sign Up" />
 
                 </form>
 
@@ -102,6 +122,6 @@ class Form extends React.Component {
         )
 
     }
-}
 
-export default Form;
+
+export default Form

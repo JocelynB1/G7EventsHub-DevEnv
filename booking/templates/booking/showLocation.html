@@ -4,7 +4,9 @@ fields=["user","event","session","seats"]
 {% load static %}
 {% block content %}
 {% if location %}
-<table>
+<div id="main-table">
+    <table class="show-table">
+    
     <caption>Location</caption>
     <thead>
         <tr>
@@ -48,7 +50,7 @@ fields=["user","event","session","seats"]
         {% endif %}
     </span>
 </div>
-
+</div>
 
 
 {% endif %}

@@ -2,10 +2,9 @@
 
 {% load static %}
 {% block content %}
-<div id="add_form_grid">
-
+<div id="add_form_grid" class="form">
 <div class="add_form">
-    <form id="event" class="form" method="post" action="{% url 'addEvent' %}">
+    <form id="event" method="post" action="{% url 'addEvent' %}">
         <table>
         <th> Create a new event</th>
 

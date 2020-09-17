@@ -3,7 +3,8 @@
 {% load static %}
 {% block content %}
 {% if booking %}
-<table>
+<div id="main-table">
+<table class="show-table">
     <caption>Booking</caption>
     <thead>
         <tr>
@@ -29,7 +30,6 @@
     </tbody>
 </table>
 
-
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -47,7 +47,7 @@
         {% endif %}
     </span>
 </div>
-
+</div>
 
 
 {% endif %}

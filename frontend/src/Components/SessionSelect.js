@@ -34,10 +34,10 @@ function SessionSelect(props) {
     let op="<label for=\"session\">Choose a session:</label><select name=\"session\" required id=\"id_session\">  <option value=\"\">--Please choose an option--</option>";
             session.forEach(
                 s => {
-                    op+=`  <option value="${s.description}">${s.description}</option>`
+                    op+=`  <option value="${s.id}">${s.description}</option>`
                 })
                 op+="</select>"
-                console.log(op);         
+                
     return (
         <>
         <div dangerouslySetInnerHTML={{__html: op}}/>

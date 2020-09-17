@@ -3,8 +3,8 @@ body{
 }
 .container{
     display: grid;
-    grid-template-columns: 10% 40% 40% 10%;
-    grid-template-rows: 20%  80%;
+    grid-template-columns: 10vw 40vw 40vw 10vw;
+    grid-template-rows: 20vh  60vh;
     grid-template-areas: "menu menu menu menu"
                         /* "... errors errors ..." */
                         "... main main ...";
@@ -20,14 +20,22 @@ ul{
 #table-main{
     display: grid;
     grid-area:main;
-    table-layout: auto;
+    width:100%;
+    height: 100%;
 }
 #main{
     display: grid;
     grid-area: main;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40vw 60vw;
     grid-template-rows: 100%;
     grid-template-areas: "Welcome form"; 
+}
+#main-form{
+    display: grid;
+    grid-area: main;
+    grid-template-columns:  100vw;
+    grid-template-rows: 60vh;
+    grid-template-areas: "form form"; 
 }
 .menu{
     grid-area:menu;

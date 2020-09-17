@@ -2,10 +2,9 @@
 
 {% load static %}
 {% block content %}
-<div id="add_form_grid">
-
+<div id="add_form_grid" class="form">
 <div class="add_form">
-    <form method="post" id="session"  class="form" action="{% url 'addSession' %}">
+    <form method="post" id="session" action="{% url 'addSession' %}">
         <table>
         <th>Create a new type of session</th>
 

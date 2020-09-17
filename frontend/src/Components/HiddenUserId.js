@@ -36,7 +36,6 @@ function HiddenUserId(props) {
                 s => {
                     id+=`${s.user_id}`
                 })
-                 console.log(id);         
     return (
         <>
       <input id="id_user" name="id_user" type="hidden" value={id}></input>

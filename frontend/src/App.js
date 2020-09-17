@@ -10,6 +10,7 @@ import Profile from './Components/Profile';
 import SignupPage from './Components/SignupPage';
 import BookAnEventPage from './Components/BookAnEventPage';
 import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 class App extends React.Component {
 
@@ -27,6 +28,7 @@ class App extends React.Component {
 
     }
   }
+  
   handleRegistration = (tk) => {
     if (tk.errors) {
       this.setState({ errors: tk.errors })
@@ -39,8 +41,9 @@ class App extends React.Component {
     }
   }
   handleLogin = (tk) => {
-    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors, status: tk.status, requestedComponent: tk.requestedComponent, redirect: "/profile" })
-
+    this.setState({ token: tk.token, credentials: tk.credentials, errors: tk.errors, status: tk.status })
+    let history = useHistory();
+    history.push('/profile')
 
   }
   handleLoggout = (tk) => {
@@ -58,64 +61,7 @@ class App extends React.Component {
     this.setState({ requestedComponent: rc.requestedComponent })
   }
   render() {
-    if (this.state.redirect) {
-
-      if (this.state.token === "") {
-        return <Router>
-          <div className="container">
-            <Navbar
-              token={this.state.token}
-              onSelect={this.handleMenuRequest}
-              status={this.state.status}
-              requestedComponent={this.state.requestedComponent}
-            />
-
-            <Switch>
-              <Route path="/" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
-              <Route path="/login" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
-              <Route path="/register" exact render={props => <SignupPage {...props} token={this.state.token} onRegistration={this.handleRegistration} onErrors={this.handleErrors} />} />
-              {/* <Main
-            details={this.state.details}
-            requestedComponent={this.state.requestedComponent}
-            onErrors={this.handleErrors}
-            onRegistration={this.handleRegistration}
-            onLogin={this.handleLogin}
-          /> */}
-            </Switch>
-          </div>
-
-          <Redirect to={this.state.redirect} /></Router>
-
-      } else {
-        return <Router>
-          <div className="container">
-            <Navbar
-              token={this.state.token}
-              onSelect={this.handleMenuRequest}
-              status={this.state.status}
-              requestedComponent={this.state.requestedComponent}
-            />
-            <Switch>
-              <Route path="/logout" exact render={props => <LogoutPage {...props} onLogout={this.handleLoggout} />} />
-              <Route path="/" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
-              <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
-              <Route path="/bookAnEvent" exact render={props => <BookAnEventPage {...props} onErrors={this.handleErrors} token={this.state.token} />} />
-
-              {/* <Main
-            details={this.state.details}
-            requestedComponent={this.state.requestedComponent}
-            onErrors={this.handleErrors}
-            onRegistration={this.handleRegistration}
-            onLogin={this.handleLogin}
-          /> */}
-            </Switch>
-          </div>
-
-          <Redirect to={this.state.redirect} /></Router>
-      }
-
-
-    }
+    
     if (this.state.token === "") {
       return (
         <>
@@ -159,7 +105,7 @@ class App extends React.Component {
 
               <Switch>
                 <Route path="/logout" exact render={props => <LogoutPage {...props} onLogout={this.handleLoggout} />} />
-                <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
+                <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details}  onErrors={this.handleErrors}  />} />
                 <Route path="/" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
                 <Route path="/bookAnEvent" exact render={props => <BookAnEventPage {...props} onErrors={this.handleErrors} token={this.state.token} />} />
 

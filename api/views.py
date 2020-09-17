@@ -80,10 +80,8 @@ class SessionCreateView(CreateAPIView):
     serializer_class = SessionSerializer
 
 class BookingCreateView(CreateAPIView):
-    serializer_class = BookingSerializer
-    authentication_classes = [TokenAuthentication, ]
-    permission_classes = [IsAuthenticated, ]
-
+    serializer_class = Booking1Serializer
+  
 class EventList(ListAPIView):
     serializer_class = EventSerializer
     queryset=Event.objects.all()

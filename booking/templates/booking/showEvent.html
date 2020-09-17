@@ -3,7 +3,9 @@
 {% load static %}
 {% block content %}
 {% if events %}
-<table>
+<div id="main-table">
+    <table class="show-table">
+    
     <caption>Events</caption>
     <thead>
         <tr>
@@ -50,6 +52,7 @@
         <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+</div>
 </div>
 
 

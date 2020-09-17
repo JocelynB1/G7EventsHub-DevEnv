@@ -145,12 +145,17 @@ class BookingSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Booking
-        fields=["user","event","session","seats"]
+        fields=["user","user_id","event","session","seats"]
     user=serializers.SerializerMethodField()
 
     def get_user(self,obj):
         return User.objects.get(id=obj.user_id).first_name+" "+User.objects.get(id=obj.user_id).last_name
 
         
-
-
+class Booking1Serializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = Booking
+        fields=["user","event","session","seats"]
+ 

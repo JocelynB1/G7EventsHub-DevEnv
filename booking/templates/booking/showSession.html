@@ -4,8 +4,9 @@ fields=["user","event","session","seats"]
 {% load static %}
 {% block content %}
 {% if session %}
-<table>
-    <caption>Session</caption>
+<div id="main-table">
+    <table class="show-table">    
+<caption>Session</caption>
     <thead>
         <tr>
             <th>description</th>
@@ -41,6 +42,7 @@ fields=["user","event","session","seats"]
         <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+</div>
 </div>
 
 

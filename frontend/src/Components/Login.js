@@ -5,45 +5,74 @@ class Login extends React.Component {
         super(props);
         this.state = {
             credentials: { username: "", password: "" },
+            redirect: null 
         }
     }
-    postLogin = (event) => {
-        event.preventDefault();
-
+    
+    postLogin = async (event) => {
         console.log(JSON.stringify(this.state.credentials))
-        fetch("http://127.0.0.1:8000/auth/",
+
+        event.preventDefault();
+        let data = await fetch("http://127.0.0.1:8000/auth/",
             ///fetch("http://40.77.23.159:8080/auth/",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(this.state.credentials)
             }
-        ).then(
-
-            //400
-            data => {
-
-                if (!data.ok) {
-                    //         console.log(data.text())
-                    data.json().then((err) => {
-                        let errorArr = []
-                        Object.keys(err).map(key =>
-                            errorArr.push(key + " : " + err[key].pop())
-                        )
-                        this.props.onErrors({ errors: errorArr })
-                    });
-                } else {
-                    data.json().then(
-                        data => {
-                            this.props.onLogin({ token: data.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN", requestedComponent: "profile" })
-                        }
-
-                    ).catch(error => console.log(error)
-                        // this.props.onLogin({token:"abc",credentials:this.state.credentials,errors:error.text})
-                    )
-                }
-            }
         )
+        try {
+            if (!data.ok) {
+                let err = await data.json()
+                let errorArr = []
+                Object.keys(err).map(key =>
+                    errorArr.push(key + " : " + err[key].pop())
+                )
+                this.props.onErrors({ errors: errorArr })
+            } else {
+                let d = await data.json()
+                this.props.onLogin({ token: d.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN"})
+            //    this.setState({ redirect: "/profile" });
+
+            }
+        }
+        catch (error) { console.log(error) }
+
+
+        // console.log(JSON.stringify(this.state.credentials))
+        // fetch("http://127.0.0.1:8000/auth/",
+        //     ///fetch("http://40.77.23.159:8080/auth/",
+        //     {
+        //         method: "POST",
+        //         headers: { "Content-Type": "application/json" },
+        //         body: JSON.stringify(this.state.credentials)
+        //     }
+        // ).then(
+
+        //     //400
+        //     data => {
+
+        //         if (!data.ok) {
+        //             //         console.log(data.text())
+        //             data.json().then((err) => {
+        //                 let errorArr = []
+        //                 Object.keys(err).map(key =>
+        //                     errorArr.push(key + " : " + err[key].pop())
+        //                 )
+        //                 this.props.onErrors({ errors: errorArr })
+        //             });
+        //         } else {
+        //             data.json().then(
+        //                 data => {
+        //                     this.props.onLogin({ token: data.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN", requestedComponent: "profile" })
+        //                 }
+
+        //             ).catch(error => console.log(error)
+        //                 // this.props.onLogin({token:"abc",credentials:this.state.credentials,errors:error.text})
+        //             )
+        //         }
+        //     }
+        // )
 
     }
     handleChange = (event) => {
@@ -51,10 +80,12 @@ class Login extends React.Component {
         cred[event.target.name] = event.target.value
         this.setState({ credentials: cred });
     }
-    
-    render(){ 
 
- 
+    render() {
+        // if (this.state.redirect) {
+        //     return <Redirect to={this.state.redirect} />
+        //   }
+
         return (
             <>
                 <div className="form">

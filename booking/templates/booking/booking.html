@@ -2,7 +2,8 @@
 
 {% load static %}
 {% block content %}
-<div id="booking_dashboard">
+<div>
+<div id="booking_dashboard" >
 
     <form id="event" method="post" action="{% url 'booking' %}">
         <h3>Create a new event</h3>
@@ -61,5 +62,6 @@
         </table>
         {% csrf_token %}
     </form>
+</div>
 </div>
 {% endblock %}
