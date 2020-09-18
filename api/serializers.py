@@ -32,6 +32,8 @@ class SignUpSerializer(serializers.ModelSerializer):
     """
     Used to register new users
     """
+    # email=serializers.EmailField(validators =[unique-True] )
+    # confirm_password=serializers.SerializerMethodField()
     class Meta:
         model=User
         fields=("id","username","password","first_name","last_name","email")
@@ -155,7 +157,20 @@ class BookingSerializer(serializers.ModelSerializer):
 class Booking1Serializer(serializers.ModelSerializer):
     """
     """
+    id_session1=serializers.IntegerField()
+    id_session2=serializers.IntegerField()
+    id_event1=serializers.IntegerField()
+    id_event2=serializers.IntegerField()
+    seats1=serializers.IntegerField()
+    seats2=serializers.IntegerField()
     class Meta:
         model = Booking
-        fields=["user","event","session","seats"]
- 
+        fields=["event","id_event1","id_event2","session","id_session1","id_session2","seats","seats1","seats2"]
+        
+
+class Booking11Serializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+         model = Booking
+         fields=["user","event","session","seats"]

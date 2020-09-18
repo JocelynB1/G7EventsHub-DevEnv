@@ -5,7 +5,7 @@ body{
     display: grid;
     grid-template-columns: 10vw 40vw 40vw 10vw;
     grid-template-rows: 20vh  60vh;
-    grid-template-areas: "menu menu menu menu"
+    grid-template-areas: "... menu menu ..."
                         /* "... errors errors ..." */
                         "... main main ...";
     
@@ -41,6 +41,43 @@ ul{
     grid-area:menu;
    
 }
+.some-page-wrapper {
+    margin: 15px;
+    background-color: red;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  #submit1{
+    width: 100%;
+    text-align: center;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+  }
+  
+  .column-one {
+    height: 100%;
+  }
+  
+  .column-two {
+    height: 100%;
+  }
+  
+  .column-three {
+    height: 100%;
+  }
+  .bookevents{
+      text-align: center;
+      width: 100;
+  }
 .menu a{
     margin-top: 2em;
     margin-left: 1em;
@@ -57,3 +94,35 @@ ul{
     margin-bottom:1em;
 
 }
+.sbutton {
+    height: 110px;
+    width: 300px;
+    padding: 32px 16px;
+    font-size: 40px;
+    color: white;
+    background-color: rgb(16, 16, 73);
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    border-radius: 25px; 
+    margin-left: 100px ;
+   
+}
+
+.sbutton:hover {
+    background-color: #3e8e41;
+    color: white;
+    font-size: 45px;
+    border-radius: 40%;
+
+  }
+
+.sbutton:active {
+    transform: translateY(4px);
+  }
+
+nav{
+  text-align: center;
+
+}
+

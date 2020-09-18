@@ -10,9 +10,6 @@ class Navbar extends React.Component {
 
       return (
         <nav className="menu">
-          <div className="logo1">
-            <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
-          </div>
           <ul className="nav-links">
             <Link to="/register">
               <li>register</li>
@@ -32,9 +29,6 @@ class Navbar extends React.Component {
             <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
           </div>
           <ul className="nav-links">
-            <Link to="/profile">
-              <li>profile</li>
-            </Link>
             <Link to="/bookAnEvent">
               <li>book an event</li>
             </Link>

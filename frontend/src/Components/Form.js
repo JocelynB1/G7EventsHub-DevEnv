@@ -101,18 +101,18 @@ function Form(props) {
                     <input type="password" required placeholder="Password *" id="password" className="password" />
 
                     <input type="password" required placeholder="Confirm Password *" id="confirm_password" className="confirmPassword" /><br />
-                    <label htmlFor="date_of_birth" >Date of birth
-                    <input type="date" required placeholder="Date of birth*" id="date_of_birth" className="date_of_birth" />
-                    </label>
-
+                   
+                    <input type="date" required placeholder="Date of birth*" id="date_of_birth" className="date_of_birth"  height="25%" width="200%" />
+                   
                     {/* <label>City :</label> */}
                     <input type="text" required placeholder="City *" id="city" className="city" height="25%" width="100%"  ></input>
                     {/* <label>Lastname :</label> */}
-                    <input type="email" required placeholder="Email *" id="email" className="email" />
                     <br />
+                    <input type="email" required placeholder="Email *" id="email" className="email" />
+                    
                     <input type="text" required placeholder="Address *" id="address" className="address" width="200%" />
 
-
+                    <br />
 
                     <input type="button" onClick={postSignUp} className="button" value="Sign Up" />
 

@@ -9,7 +9,6 @@ import LogoutPage from "./Components/LogoutPage"
 import Profile from './Components/Profile';
 import SignupPage from './Components/SignupPage';
 import BookAnEventPage from './Components/BookAnEventPage';
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 class App extends React.Component {
@@ -105,7 +104,6 @@ class App extends React.Component {
 
               <Switch>
                 <Route path="/logout" exact render={props => <LogoutPage {...props} onLogout={this.handleLoggout} />} />
-                <Route path="/profile" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details}  onErrors={this.handleErrors}  />} />
                 <Route path="/" exact render={props => <Profile {...props} token={this.state.token} details={this.state.details} />} />
                 <Route path="/bookAnEvent" exact render={props => <BookAnEventPage {...props} onErrors={this.handleErrors} token={this.state.token} />} />
 

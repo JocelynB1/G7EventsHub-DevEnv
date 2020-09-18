@@ -81,6 +81,31 @@ class SessionCreateView(CreateAPIView):
 
 class BookingCreateView(CreateAPIView):
     serializer_class = Booking1Serializer
+
+    def create(self, request, *args, **kwargs): 
+        data=request.data
+        serializer=Booking11Serializer(data=data)
+        if(True):
+            booking=Booking()
+            booking1=Booking()
+            booking2=Booking()
+            booking.user=request.user
+            booking.event=Event.objects.get(pk=data.get("event"))
+            booking.session=Session.objects.get(pk=data.get("session"))
+            booking.seats=data.get("seats")
+            booking1.user=request.user
+            booking1.event=Event.objects.get(pk=data.get("id_event1"))
+            booking1.session=Session.objects.get(pk=data.get("id_session1"))
+            booking1.seats=data.get("seats1")
+            booking2.user=request.user
+            booking2.event=Event.objects.get(pk=data.get("id_event2"))
+            booking2.session=Session.objects.get(pk=data.get("id_session2"))
+            booking2.seats=data.get("seats2")
+            booking.save()
+            booking1.save()
+            booking2.save()
+
+        return Response()
   
 class EventList(ListAPIView):
     serializer_class = EventSerializer

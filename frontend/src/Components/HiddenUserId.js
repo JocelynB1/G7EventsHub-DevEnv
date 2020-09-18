@@ -39,6 +39,8 @@ function HiddenUserId(props) {
     return (
         <>
       <input id="id_user" name="id_user" type="hidden" value={id}></input>
+      <input id="user" name="user" type="hidden" value={id}></input>
+
         </>)
 
 }
