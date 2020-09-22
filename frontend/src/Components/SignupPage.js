@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navbar.css';
 import Welcome from "./Welcome";
 import Form from "./Form"
 

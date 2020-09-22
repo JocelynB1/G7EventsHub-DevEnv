@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navbar.css';
 import Welcome from "./Welcome";
 import FormComponent from "./FormComponent"
 import Profile from './Profile';

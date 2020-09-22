@@ -107,9 +107,6 @@ class BookingCreateView(CreateAPIView):
 
         return Response()
   
-class EventList(ListAPIView):
-    serializer_class = EventSerializer
-    queryset=Event.objects.all()
     
 class BookingList(ListAPIView):
     serializer_class = BookingSerializer
@@ -126,6 +123,18 @@ class EventList(ListAPIView):
     queryset=Event.objects.all()
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
+
+class MyEventList(ListAPIView):
+    serializer_class = MyEventSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return Booking.objects.filter(user=user.id)
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+
+  
+
+
 
 class LocationList(ListAPIView):
     serializer_class = LocationSerializer

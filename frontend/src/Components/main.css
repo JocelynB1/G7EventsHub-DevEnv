@@ -4,9 +4,9 @@ body{
 .container{
     display: grid;
     grid-template-columns: 10vw 40vw 40vw 10vw;
-    grid-template-rows: 20vh  60vh;
+    grid-template-rows: 20vh 5vh  60vh;
     grid-template-areas: "... menu menu ..."
-                        /* "... errors errors ..." */
+                         "messages messages messages messages" 
                         "... main main ...";
     
 }
@@ -17,18 +17,59 @@ ul{
     list-style: none;
     
 }
+#messages{
+  display: grid;
+  grid-area:messages;
+  font-weight: bolder;
+  text-align: center;
+  color: green;
+  font-size: larger;
+}
 #table-main{
     display: grid;
     grid-area:main;
     width:100%;
     height: 100%;
+    grid-template-areas: "Table"; 
+    
+
 }
+#Table{
+  grid-area:Table;
+  table-layout: auto;
+width: 100%;
+text-align: center;
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {background-color: #f5f5f5;}
+tr:nth-child(even) {background-color: #f2f2f2;}
 #main{
     display: grid;
     grid-area: main;
     grid-template-columns: 40vw 60vw;
     grid-template-rows: 100%;
     grid-template-areas: "Welcome form"; 
+}
+th {
+  background-color: #270949;
+  color: white;
+}
+#landing{
+  display: grid;
+  grid-area: main;
+  grid-template-columns: 100% ;
+  grid-template-rows: 100%;
+  grid-template-areas: "landingContentent"; 
+}
+.landingContentent{
+  grid-area: landingContentent;
+
 }
 #main-form{
     display: grid;
@@ -126,3 +167,11 @@ nav{
 
 }
 
+.Welcomelogo {
+  grid-area:logo;
+  width: 50vh;
+  height: 100%;
+  padding: 0.02%;
+  padding-right: 0.1%;
+  margin: 0.02%;
+}

@@ -5,14 +5,12 @@ import SessionSelect2 from './SessionSelect2';
 import EventSelect from './EventSelect';
 import EventSelect1 from './EventSelect1';
 import EventSelect2 from './EventSelect2';
-import HiddenUserId from './HiddenUserId';
 
 
 function BookAnEventPage(props) {
     let postBooking = async (event) => {
         event.preventDefault();
         const formData = new FormData(document.querySelector("#form"))
-        formData.append("user", document.querySelector("#id_user").value)
         formData.append("id_event", document.querySelector("#id_event").value)
         formData.append("id_event1", document.querySelector("#id_event1").value)
         formData.append("id_event2", document.querySelector("#id_event2").value)
@@ -22,14 +20,16 @@ function BookAnEventPage(props) {
         formData.append("seats", document.querySelector("#seats").value)
         formData.append("seats1", document.querySelector("#seats1").value)
         formData.append("seats2", document.querySelector("#seats2").value)
-        let data = fetch("http://127.0.0.1:8000/api/booking/",
+        let data = await fetch("http://127.0.0.1:8000/api/booking/",
             {
                 method: "POST",
                 headers: {
+                    'Accept': 'application/json',
                     Authorization: `Token ${props.token}`,
+                    'Content-Type': 'application/json'
 
                 },
-                body: formData
+                body: JSON.stringify(Object.fromEntries(formData))
 
 
 
@@ -37,9 +37,16 @@ function BookAnEventPage(props) {
         )
         try {
 
+            if(data.status==200){
+                console.log("Reached here");
+                props.onBooking({
+                    requestedComponent:"my events",
+                    message:"Booking successful"
+                })
+            }else{
+
             if (!data.ok) {
-                let err = await (await data).json()
-                console.log(err)
+                let err = await data.json()
                 let errorArr = []
                 if (typeof(data) === 'object' && data !== null){
                 
@@ -63,6 +70,7 @@ function BookAnEventPage(props) {
                 }
     
             }
+        }
         } catch (error) { console.log(error) }
     }
     return (
@@ -81,8 +89,8 @@ function BookAnEventPage(props) {
                                     </h2>
                                     <EventSelect token={props.token} />
                                     <SessionSelect token={props.token} />
-                                    <label htmlFor="seats">Seats</label>
-                                    <input type="number" id="seats" name="seats" />
+                                    <label htmlFor="seats">Seats</label><br></br>
+                                    <input type="number" id="seats" name="seats" required/>
                                 </div>
                             </div>
                             <div className='column'>
@@ -90,9 +98,9 @@ function BookAnEventPage(props) {
                                     <h2>Afternoon</h2>
                                     <EventSelect1 token={props.token} />
                                     <SessionSelect1 token={props.token} />
-                                    <label htmlFor="seats1">Seats</label>
-                                    <input type="number" id="seats1" name="seats1" />
-                                    <button value="Submit" onClick={postBooking} className="button" id="submit1" value="Submit" >Submit</button>
+                                    <label htmlFor="seats1">Seats</label><br></br>
+                                    <input type="number" id="seats1" name="seats1" required/>
+                                    <input type="submit" value="Submit" onClick={postBooking} className="button" id="submit1"  />
 
                                 </div>
                             </div>
@@ -101,14 +109,13 @@ function BookAnEventPage(props) {
                                     <h2>Evening</h2>
                                     <EventSelect2 token={props.token} />
                                     <SessionSelect2 token={props.token} />
-                                    <label htmlFor="seats2">Seats</label>
-                                    <input type="number" id="seats2" name="seats2" />
+                                    <label htmlFor="seats2">Seats</label><br></br>
+                                    <input type="number" id="seats2" name="seats2" required/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <HiddenUserId token={props.token} />
-
+                 
                 </form>
             </div></div>
         </>)

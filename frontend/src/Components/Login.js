@@ -31,9 +31,14 @@ class Login extends React.Component {
                 this.props.onErrors({ errors: errorArr })
             } else {
                 let d = await data.json()
-                this.props.onLogin({ token: d.token, credentials: this.state.credentials, status: "ATTENDEE_SIGNED_IN"})
-            //    this.setState({ redirect: "/profile" });
-
+                this.props.onLogin({ 
+                    token: d.token,
+                     credentials: this.state.credentials,
+                      status: "ATTENDEE_SIGNED_IN",
+                      requestedComponent:"home",
+                      message:"Successfuly logged in"
+                    })
+           
             }
         }
         catch (error) { console.log(error) }
@@ -82,14 +87,11 @@ class Login extends React.Component {
     }
 
     render() {
-        // if (this.state.redirect) {
-        //     return <Redirect to={this.state.redirect} />
-        //   }
 
         return (
             <>
                 <div className="form">
-                    <form method="post">
+                    <form method="post" id="form">
                         <h2>Login</h2>
 
                         <p>
@@ -101,7 +103,7 @@ class Login extends React.Component {
                             <input type="password" name="password" autoComplete="current-password" required id="id_password"
                                 value={this.state.credentials.password} onChange={this.handleChange} />
                         </p>
-                        <button onClick={this.postLogin} className="button" type="submit">Login</button>
+                        <input  onClick={this.postLogin} className="button" type="submit" value="Login"/>
                     </form>
                 </div>
             </>

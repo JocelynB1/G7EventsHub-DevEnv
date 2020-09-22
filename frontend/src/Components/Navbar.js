@@ -1,51 +1,45 @@
 import React from 'react';
-import './Navbar.css';
-import menuLogo from "./img/logo.svg"
-import { Link } from 'react-router-dom';
+import MenuOptions from './MenuOptions'
+import navLogo from "./navLogo.png";
+import "./index.css";
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-  render() {
-    if (this.props.token === "") {
-
-      return (
-        <nav className="menu">
-          <ul className="nav-links">
-            <Link to="/register">
-              <li>register</li>
-            </Link>
-            <Link to="/login">
-              <li>login</li>
-            </Link>
-          </ul>
-        </nav>
-      )
-
-
-    } else {
-      return (
-        <nav className="menu">
-          <div className="logo1">
-            <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
-          </div>
-          <ul className="nav-links">
-            <Link to="/bookAnEvent">
-              <li>book an event</li>
-            </Link>
-           
-            <Link to="/logout">
-              <li>logout</li>
-            </Link>
-          </ul>
-        </nav>
-        //   <nav className="menu">
-        //     <div className="logo1">
-        //       <img src={menuLogo} alt="" srcSet="" id="pic_logo" />
-        //     </div>
-        //        <MenuOptions onSelect={this.props.onSelect} status={this.props.status}/>
-        //   </nav>
-      )
     }
   }
+  onSelect = () => {
+    this.props.onSelect({ requestedComponent: this.props.menulabel })
+  }
+  componentDidUpdate(){
+    setTimeout(() => this.props.setMessage(""), 5000)
+  }
+  render() {
+
+    return (
+      <>
+        <div className="landingNav" >
+          <nav className="menu">
+            <div className="logoDiv">
+              <img src={navLogo} className="navLogo" alt="logo" />
+            </div>
+            <div className="menuDiv">
+              <ul className="menuList">
+                <MenuOptions onSelect={this.props.onSelect} status={this.props.status} />
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div id="messages" >
+        {this.props.message}
+        </div>
+      </>
+    )
+
+
+  }
+
 }
 export default Navbar;

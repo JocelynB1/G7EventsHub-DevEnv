@@ -1,6 +1,5 @@
 // importing react & css
 import React from 'react';
-import Errors from "./Errors";
 
 function Form(props) {
    let postSignUp =async  (event) => {
@@ -23,11 +22,15 @@ function Form(props) {
             body: formData
         })
         try{
-            
+            if(data.status==200){
+                props.onRegistration({
+                    requestedComponent:"login",
+                    message:"Registration succesful please sign in"
+                })
+
+            }
             if (!data.ok) {
                 let err = await data.json()
-              
-               
                     let errorArr = []
                     Object.keys(err).map(key =>
                         errorArr.push(key + " : " + err[key])
@@ -37,7 +40,10 @@ function Form(props) {
              
             } else {
                 let d = await data.json()
-                console.log(d)
+                props.onRegistration({
+                    requestedComponent:"login",
+                    message:"Registration succesful please sign in"
+                })
             }
             
                 
@@ -114,7 +120,7 @@ function Form(props) {
 
                     <br />
 
-                    <input type="button" onClick={postSignUp} className="button" value="Sign Up" />
+                    <input type="submit" onClick={postSignUp} className="button" value="Sign Up" />
 
                 </form>
 

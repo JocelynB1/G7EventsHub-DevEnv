@@ -174,3 +174,47 @@ class Booking11Serializer(serializers.ModelSerializer):
     class Meta:
          model = Booking
          fields=["user","event","session","seats"]
+
+class MyEventSerializer(serializers.ModelSerializer):
+    """
+    """
+    location=serializers.SerializerMethodField()    
+    event_name=serializers.SerializerMethodField()    
+    tag_line=serializers.SerializerMethodField()    
+    title=serializers.SerializerMethodField()    
+    start_date=serializers.SerializerMethodField()    
+    end_date=serializers.SerializerMethodField()    
+    session=serializers.SerializerMethodField()    
+    class Meta:
+        model = Booking
+        fields=["id","location","event_name","tag_line","title","start_date","end_date","session","seats"]
+    def get_location(self,obj):
+        return Location.objects.get(pk=obj.event.location_id).name
+
+    def get_event_name(self,obj):
+        return obj.event.name
+
+    def get_tag_line(self,obj):
+        return obj.event.tag_line
+
+    def get_title(self,obj):
+        return obj.event.title
+
+    def get_start_date(self,obj):
+       return str(obj.event.start_date)+" , "+str(obj.event.start_hour)+" : "+str(obj.event.start_minutes)
+
+    def get_end_date(self,obj):
+       return str(obj.event.end_date)+" , "+str(obj.event.end_hour)+" : "+str(obj.event.end_minutes)
+    
+    def get_session(self,obj):
+        return obj.session.description
+    
+    
+   
+
+
+
+
+
+
+

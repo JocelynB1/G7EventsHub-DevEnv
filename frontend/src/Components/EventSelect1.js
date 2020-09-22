@@ -31,7 +31,7 @@ function EventSelect1(props) {
 
     }, []);
 
-    let op = "<label for=\"event1\">Choose a event:</label><select name=\"event1\" required id=\"id_event1\">  <option value=\"\">--Please choose an option--</option>";
+    let op = "<label for=\"event1\">Choose a event:</label><select name=\"event1\"  id=\"id_event1\" required >  <option  disabled selected >--Please choose an option--</option>";
     event.forEach(
         s => {
             op += `  <option value="${s.id}">${s.name}:${s.tag_line}</option>`

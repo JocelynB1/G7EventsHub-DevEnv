@@ -7,14 +7,6 @@ body {
     }
 
 
-    .logo {
-        grid-area:logo;
-        width: 50vh;
-        height: 100%;
-        padding: 0.02%;
-        padding-right: 0.1%;
-        margin: 0.02%;
-    }
     
     /* .welcome {
       width: 250px;
@@ -64,3 +56,257 @@ body {
   .radio {
     padding-left: 35px;
   }
+
+  button {
+    height: 110px;
+    width: 300px;
+    padding: 32px 16px;
+    font-size: 40px;
+    color: white;
+    background-color: rgb(16, 16, 73);
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    border-radius: 25px; 
+    margin-left: 100px ;
+   
+}
+
+button:hover {
+    background-color: #3e8e41;
+    color: white;
+    font-size: 45px;
+    border-radius: 40%;
+
+  }
+
+  button:active {
+    transform: translateY(4px);
+  }
+
+
+
+
+.landingNav {
+    /* background-color: #270949; */
+    height: 60px;
+    width: 100%;
+    /* position: fixed; */
+    margin-bottom: 70px;
+} 
+
+.logo{
+    height: 100px;
+    width: 150px;  
+    margin: 10px;
+}
+/* .event {
+    
+} */
+
+.eventDetails {
+    /* background-color: #270949; */
+    height: 500px;
+    width: 700px;
+    margin-right: 200px;
+    /* margin-top: 100px; */
+    color: #270949;
+    margin-left: 0px;
+   
+
+}
+
+.honu {
+    height: 400px ;
+    width: 400px;
+
+}
+h1 {
+    margin-top: 0px;
+    margin-left:65px ;
+}
+
+.speaker {
+    /* height: 350px; */
+    width: 600px;
+    color: #270949;
+    margin-left: 300px;
+    margin-right: 0px;
+    /* margin-top: 100px; */
+    
+}
+
+.details {
+    align-items: center;
+    align-content: center;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: center;
+    
+}
+
+
+figcaption {
+    font-size: 23px;
+    margin-top: 15px;
+    margin-right: 40px;
+
+
+}
+table {
+    font-size:25px ;
+    padding: 10px;
+    margin: 10px;
+    width: 600px;
+}
+
+.info {
+    font-weight: bolder;
+}
+
+li {
+    font-size: 25px;
+    list-style: none;
+    padding: 10px;
+}
+.btn{
+    height: 50px;
+    width: 120px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(16, 16, 73);
+    /* float: right; */
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-left: 340px;
+}
+
+.btn:hover {
+    background-color: #3e8e41;
+    color: white;
+    font-size: 20px;
+    border-radius: 40%;
+
+  }
+
+  .btn:active {
+    transform: translateY(4px);
+  }
+
+  .sideBar {
+      height: 400px;
+      width: 500px ;
+      background-color: #3e8e41;
+  }
+
+ .eve {
+      height: 300px;
+      width: 400px;
+      margin: 20px;
+
+
+  }
+
+  .listImage {
+      margin-left: 200px;
+  }
+
+  .up {
+      position: center;
+      align-content: center;
+      margin-left: 300px;
+  }
+
+
+
+  .landingContentent {
+
+    align-items: center;
+    align-content: center;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    justify-content: center;
+
+  }
+
+ .navLogo{
+     height: 60px;
+     padding: 10px;
+     border-radius: 25px;
+ }
+
+/* 
+  .menu {
+    background-color: #270949;
+    color: white;
+    box-shadow: 0px 2px 24px 0px rgba(175, 156, 156, 0.15);
+    border-radius: 20px;
+    width: 770px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: relative;
+    margin-left: 350px;
+} */
+
+.menuList {
+    list-style-type: none;
+    padding: 0;
+    height: 100%;
+    margin: 0;
+    
+}
+
+.menuListItem {
+    display: inline-block;
+    height: 100%;
+    margin-right: 20px;
+    margin-top:15px ;
+}
+
+.menuListItem:last-child {
+    margin-right: 0;
+}
+
+.menuLink {
+    color: white;
+    text-decoration:none ;
+    text-transform: uppercase;
+}
+
+.nenuDiv {
+    display: flex;
+    align-items: center;
+    height: 100%;
+} 
+
+
+@media screen and (max-width: 800px){
+    .details {
+     display: flex;
+     flex-direction: column;
+     flex-flow: column;
+
+    }
+
+    .landingContentent {
+        display: flex;
+        flex-direction: column;
+        flex-flow: column;
+    
+      }
+ 
+
+     
+   
+ }

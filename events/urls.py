@@ -25,7 +25,7 @@ urlpatterns = [
     path('',include('registration.urls')),
     path('',include('signin.urls')),
     path('',include('booking.urls')),
-    path('/',BookingListView.as_view(), name='home'),
+    path('',BookingListView.as_view(), name='home'),
     path('',BookingListView.as_view()),
     
 ]

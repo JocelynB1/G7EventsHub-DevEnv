@@ -17,7 +17,7 @@ class Location(models.Model):
 #parse date time >time
 class Event(models.Model):
     HOURS=[
-    ("0 am","1 am"),
+    ("0 am","0 am"),
     ("1 am","1 am"),
     ("2 am","2 am"),
     ("3 am","3 am"),

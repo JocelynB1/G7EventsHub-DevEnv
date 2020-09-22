@@ -6,10 +6,7 @@ class MenuItem extends React.Component{
         this.props.onSelect({requestedComponent:this.props.menulabel})
      }
     render(){
-        return(
-            <>
-             <a href="#" onClick={this.onSelect}>{this.props.menulabel}</a>
-            </>)
+        return(<li className = "menuListItem" onClick={this.onSelect}>{this.props.menulabel}</li>)
     }
 }
 export default MenuItem;
