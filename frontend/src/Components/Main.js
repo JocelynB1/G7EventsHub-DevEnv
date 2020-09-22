@@ -27,7 +27,7 @@ class MenuOptions extends React.Component {
                 <section id="main">
                   <Welcome />
                   <FormComponent formType={this.props.requestedComponent} onErrors={this.props.onErrors}
-                   onRegistration={this.props.onRegistration} onLogin={this.props.onLogin}  />
+                   onSuccess={this.props.onSuccess} onLogin={this.props.onLogin}  />
                 </section>
                )
         }

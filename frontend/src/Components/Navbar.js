@@ -14,6 +14,7 @@ class Navbar extends React.Component {
     this.props.onSelect({ requestedComponent: this.props.menulabel })
   }
   componentDidUpdate(){
+    window.localStorage.setItem("requestedComponent", this.props.requestedComponent)
     setTimeout(() => this.props.setMessage(""), 5000)
   }
   render() {

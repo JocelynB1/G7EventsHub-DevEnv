@@ -10,7 +10,7 @@ function FormComponent(props) {
     return <Login errors={props.errors} onLogin={props.onLogin} onErrors={props.onErrors}/>;
   }
   if (formType === "register") {
-    return <Form errors={props.errors} onRegistration={props.onRegistration} onErrors={props.onErrors}/>;
+    return <Form errors={props.errors} onSuccess={props.onSuccess} onErrors={props.onErrors}/>;
   }
 }
 

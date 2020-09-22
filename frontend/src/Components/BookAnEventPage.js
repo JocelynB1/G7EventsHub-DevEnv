@@ -38,8 +38,7 @@ function BookAnEventPage(props) {
         try {
 
             if(data.status==200){
-                console.log("Reached here");
-                props.onBooking({
+                props.onSuccess({
                     requestedComponent:"my events",
                     message:"Booking successful"
                 })

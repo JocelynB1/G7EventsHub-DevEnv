@@ -23,7 +23,7 @@ function Form(props) {
         })
         try{
             if(data.status==200){
-                props.onRegistration({
+                props.onSuccess({
                     requestedComponent:"login",
                     message:"Registration succesful please sign in"
                 })
@@ -40,7 +40,7 @@ function Form(props) {
              
             } else {
                 let d = await data.json()
-                props.onRegistration({
+                props.onSuccess({
                     requestedComponent:"login",
                     message:"Registration succesful please sign in"
                 })

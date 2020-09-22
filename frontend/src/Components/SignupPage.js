@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
                 <section id="main">
                   <Welcome />
                   <Form formType={this.props.requestedComponent} onErrors={this.props.onErrors}
-                   onRegistration={this.props.onRegistration}  />
+                   onSuccess={this.props.onSuccess}  />
                 </section>
                )
         }

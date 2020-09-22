@@ -71,7 +71,7 @@ class App extends React.Component {
       status={this.state.status}
       requestedComponent={this.state.requestedComponent}
       onErrors={this.handleErrors} onLogin={this.handleLogin}
-      onRegistration={this.handleRegistration}
+      onSuccess={this.handleRegistration}
       />
       break;
 
@@ -98,13 +98,13 @@ class App extends React.Component {
               <Switch>
                 <Route path="/" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
                 <Route path="/login" exact render={props => <LoginPage {...props} onErrors={this.handleErrors} onLogin={this.handleLogin} />} />
-                <Route path="/register" exact render={props => <SignupPage {...props} token={this.state.token}  onRegistration={this.handleRegistration} onErrors={this.handleErrors} />} />
+                <Route path="/register" exact render={props => <SignupPage {...props} token={this.state.token}  onSuccess={this.handleRegistration} onErrors={this.handleErrors} />} />
 
                 {/* <Main
             details={this.state.details}
             requestedComponent={this.state.requestedComponent}
             onErrors={this.handleErrors}
-            onRegistration={this.handleRegistration}
+            onSuccess={this.handleRegistration}
             onLogin={this.handleLogin}
           /> */}
               </Switch>
@@ -133,7 +133,7 @@ class App extends React.Component {
                   details={this.state.details}
                   requestedComponent={this.state.requestedComponent}
                   onErrors={this.handleErrors}
-                  onRegistration={this.handleRegistration}
+                  onSuccess={this.handleRegistration}
                   onLogin={this.handleLogin}
                 /> */}
               </Switch>
