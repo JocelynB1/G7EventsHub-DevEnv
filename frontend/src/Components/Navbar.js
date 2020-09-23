@@ -7,15 +7,17 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      prevRequestedComponent: null
     }
   }
   onSelect = () => {
-    this.props.onSelect({ requestedComponent: this.props.menulabel })
+    // this.props.onSelect({ requestedComponent: this.props.menulabel })
   }
-  componentDidUpdate(){
-    window.localStorage.setItem("requestedComponent", this.props.requestedComponent)
-    setTimeout(() => this.props.setMessage(""), 5000)
+  componentDidUpdate() {
+    if (this.state.prevRequestedComponent !== this.props.requestedComponent) {
+      this.setState({prevRequestedComponent: this.props.requestedComponent})
+      setTimeout(() => this.props.setMessage(""), 5000)
+    }
   }
   render() {
 
@@ -34,7 +36,7 @@ class Navbar extends React.Component {
           </nav>
         </div>
         <div id="messages" >
-        {this.props.message}
+          {this.props.message}
         </div>
       </>
     )

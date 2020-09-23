@@ -19,7 +19,7 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model=Event
-        fields=["location","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
+        fields=["location","speaker","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
         # fields=["location","name","tag_line","title","start_time","end_time"]
 
     # name=forms.CharField(label="Name of event",max_length=100)

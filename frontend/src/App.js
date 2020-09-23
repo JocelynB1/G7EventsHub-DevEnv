@@ -14,7 +14,7 @@ class App extends React.Component {
       details: [],
       token: null,
       credentials: { username: "", password: "" },
-      requestedComponent: "login",
+      requestedComponent: null,
       errors: [],
       status: "SIGNED_OUT",
       onSuccess: this.onSuccess,
@@ -31,7 +31,6 @@ class App extends React.Component {
 
   setMessage = (msg) => {
     this.setState({ message: msg })
-    setTimeout(() => { this.setState({ message: "" }) }, 5000)
 
   }
   onSuccess = (next) => {
@@ -39,7 +38,6 @@ class App extends React.Component {
       requestedComponent: next.requestedComponent,
       message: next.message
     })
-    window.localStorage.setItem("requestedComponent", next.requestedComponent)
 
   }
 
@@ -61,10 +59,6 @@ class App extends React.Component {
     window.localStorage.setItem("token", tk.token)
 
   }
-  handleLoggout = (tk) => {
-    this.setState({ token: null, credentials: tk.credentials, status: tk.status })
-    localStorage.clear()
-  }
 
   handleMenuRequest = (rc) => {
     if (rc.requestedComponent === "log out") {
@@ -72,6 +66,7 @@ class App extends React.Component {
       this.setState({ credentials: { username: "", password: "" } })
       this.setState({ requestedComponent: "login" })
       this.setState({ message: "Successfully logged out" })
+      localStorage.clear()
 
     } else {
       this.setState({ requestedComponent: rc.requestedComponent })
@@ -80,18 +75,11 @@ class App extends React.Component {
 
 
   render() {
-    console.log(localStorage.getItem("token"))
-    if (localStorage.hasOwnProperty("token") && this.state.token === null) {
-      this.setState({ token: localStorage.getItem("token") })
+    if (window.localStorage.hasOwnProperty("token") && this.state.token === null) {
+      this.setState({ token: window.localStorage.getItem("token") })
       this.setState({ status: "ATTENDEE_SIGNED_IN" })
       this.setState({ message: "Welcome back" })
-      if (localStorage.hasOwnProperty("requestedComponent")) {
-        this.setState({ requestedComponent: localStorage.getItem("requestedComponent") })
-      } else {
-        this.setState({ requestedComponent: "home" })
-      }
-
-
+      this.setState({ requestedComponent: "home" })
     }
     return <>
       <div className="container">

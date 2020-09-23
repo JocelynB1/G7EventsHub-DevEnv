@@ -12,6 +12,7 @@ function Form(props) {
         formData.append("username", document.querySelector("#username").value)
         formData.append("phone_number", document.querySelector("#phone_number").value)
         formData.append("email", document.querySelector("#email").value)
+        formData.append("confirm_email", document.querySelector("#confirm_email").value)
         formData.append("password", document.querySelector("#password").value)
         formData.append("date_of_birth", document.querySelector("#date_of_birth").value)
         formData.append("city", document.querySelector("#city").value)
@@ -115,7 +116,8 @@ function Form(props) {
                     {/* <label>Lastname :</label> */}
                     <br />
                     <input type="email" required placeholder="Email *" id="email" className="email" />
-                    
+                    <input type="email" required placeholder="Confirm Email *" id="confirm_email" className="confirm_email" />
+                    <br/>
                     <input type="text" required placeholder="Address *" id="address" className="address" width="200%" />
 
                     <br />

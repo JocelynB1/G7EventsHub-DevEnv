@@ -29,7 +29,7 @@ function EventSelect1(props) {
 
 
 
-    }, []);
+    }, [props.token]);
 
     let op = "<label for=\"event1\">Choose a event:</label><select name=\"event1\"  id=\"id_event1\" required >  <option  disabled selected >--Please choose an option--</option>";
     event.forEach(

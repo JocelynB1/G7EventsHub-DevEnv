@@ -218,7 +218,7 @@ class EventListView(generic.ListView ):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class EventUpdateView(generic.UpdateView):
     Model=Event
-    fields=["location","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
+    fields=["location","speaker","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
     queryset=Event.objects.all() 
     template_name="booking/updateEvent.html"
     success_url="/showEvents"

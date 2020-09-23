@@ -1,5 +1,6 @@
 import React from 'react';
-import NotLoggedIn from './NotLogedInPage';
+import LoginPage from "./LoginPage"
+import SignupPage from './SignupPage';
 import LandingPage from '../Pages1/LandingPage';
 import BookAnEventPage from './BookAnEventPage';
 import EventTable from './EventTable';
@@ -7,22 +8,23 @@ import EventTable from './EventTable';
 function Controller(props) {
   switch (props.requestedComponent) {
     case "login":
+      return <LoginPage {... props} />
+
     case "register":
-      return <NotLoggedIn {...props} />
-      break;
+      return <SignupPage {... props} />
 
     case "home":
       return <LandingPage {...props} />
-      break;
+
     case "book an event":
       return <BookAnEventPage {...props} />
-      break;
+
     case "my events":
       return <EventTable {...props} />
-      break;
-      
+
     default:
-      break;
+      return <LoginPage {... props} />
+      
   }
 
 }

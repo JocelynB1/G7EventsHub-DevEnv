@@ -8,7 +8,7 @@ from .models import Detail
 from booking.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth import password_validation
+from django.contrib.auth import password_validation 
 from django.http import JsonResponse
 from django.core import validators
 
@@ -33,10 +33,11 @@ class SignUpSerializer(serializers.ModelSerializer):
     Used to register new users
     """
     # email=serializers.EmailField(validators =[unique-True] )
-    # confirm_password=serializers.SerializerMethodField()
+    confirm_password=serializers.SerializerMethodField()
+    confirm_email=serializers.SerializerMethodField()
     class Meta:
         model=User
-        fields=("id","username","password","first_name","last_name","email")
+        fields=("id","username","password","first_name","last_name","email","confirm_password","confirm_email")
         extra_kwargs={"password":{"write_only":True,"required":True}}
 
     
@@ -47,7 +48,19 @@ class SignUpSerializer(serializers.ModelSerializer):
             password_validation.validate_password(value, self.instance)
         except ValidationError:
              raise serializers.ValidationError.messages[0]
+
+        if self.initial_data["confirm_password"]!= value:
+            raise serializers.ValidationError("Passwords do not match")
         return (value)
+
+    def validate_email(self,value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email already exists.Please choose another")
+
+        if self.initial_data["confirm_email"]!= value:
+            raise serializers.ValidationError("Emails do not match")
+        return value
+
 
     def save(self, **kwargs):
         pass
@@ -184,15 +197,20 @@ class MyEventSerializer(serializers.ModelSerializer):
     title=serializers.SerializerMethodField()    
     start_date=serializers.SerializerMethodField()    
     end_date=serializers.SerializerMethodField()    
-    session=serializers.SerializerMethodField()    
+    session=serializers.SerializerMethodField()
+    speaker=serializers.SerializerMethodField()
+
     class Meta:
         model = Booking
-        fields=["id","location","event_name","tag_line","title","start_date","end_date","session","seats"]
+        fields=["id","speaker","location","event_name","tag_line","title","start_date","end_date","session","seats"]
     def get_location(self,obj):
         return Location.objects.get(pk=obj.event.location_id).name
 
     def get_event_name(self,obj):
         return obj.event.name
+
+    def get_speaker(self,obj):
+        return obj.event.speaker.name
 
     def get_tag_line(self,obj):
         return obj.event.tag_line

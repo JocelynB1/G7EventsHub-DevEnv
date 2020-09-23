@@ -14,38 +14,47 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-#parse date time >time
+class Speaker(models.Model):
+    name=models.CharField(max_length=100)
+    phone_number=models.IntegerField()
+    email=models.EmailField()
+
+    def __str__(self):
+        return f'{self.name},{self.email}'
+
 class Event(models.Model):
     HOURS=[
-    ("0 am","0 am"),
-    ("1 am","1 am"),
-    ("2 am","2 am"),
-    ("3 am","3 am"),
-    ("4 am","4 am"),
-    ("5 am","5 am"),
-    ("6 am","6 am"),
-    ("7 am","7 am"),
-    ("8 am","8 am"),
-    ("9 am","9 am"),
-    ("10 am","10 am"),
-    ("11 am","11 am"),
-    ("1 pm","1 pm"),
-    ("2 pm","2 pm"),
-    ("3 pm","3 pm"),
-    ("4 pm","4 pm"),
-    ("5 pm","5 pm"),
-    ("6 pm","6 pm"),
-    ("7 pm","7 pm"),
-    ("8 pm","8 pm"),
-    ("9 pm","9 pm"),
-    ("10 pm","10 pm"),
-    ("11 pm","11 pm"),
+    ("0 ","0 "),
+    ("1 ","1 "),
+    ("2 ","2 "),
+    ("3 ","3 "),
+    ("4 ","4 "),
+    ("5 ","5 "),
+    ("6 ","6 "),
+    ("7 ","7 "),
+    ("8 ","8 "),
+    ("9 ","9 "),
+    ("10 ","10 "),
+    ("11 ","11 "),
+    ("12 ","12 "),
+    ("13 ","13 "),
+    ("14 ","14 "),
+    ("15 ","15 "),
+    ("16 ","16 "),
+    ("17 ","17 "),
+    ("18 ","18 "),
+    ("19 ","19 "),
+    ("20 ","20 "),
+    ("21 ","21 "),
+    ("22 ","22 "),
+    ("23 ","23 "),
      ]
     
     location=models.ForeignKey(to=Location,  on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
     tag_line=models.CharField(max_length=500)
     title=models.CharField(max_length=100)
+    speaker = models.ForeignKey(to=Speaker, on_delete=models.CASCADE)
     start_date=models.DateField(validators=[MinValueValidator(limit_value=date.today)])
     start_hour=models.CharField(max_length=5,choices=HOURS,blank=True)
     start_minutes=models.PositiveIntegerField(validators=[MaxValueValidator(59)])
@@ -57,13 +66,6 @@ class Event(models.Model):
     def __str__(self):
         return f'{self.name}:{self.tag_line}'
 
-class Speaker(models.Model):
-    name=models.CharField(max_length=100)
-    phone_number=models.IntegerField()
-    email=models.EmailField()
-
-    def __str__(self):
-        return f'{self.name},{self.email}'
 
 class Session(models.Model):
     description=models.CharField(max_length=100)
