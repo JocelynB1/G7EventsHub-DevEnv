@@ -6,12 +6,12 @@
 <div id="main-table">
     <table class="show-table">
     
-    <caption>Speaker</caption>
+    <caption><h2>Speaker</h2></caption>
     <thead>
         <tr>
-            <th>name</th>
-            <th>phone number</th>
-            <th>email</th>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th>Email</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -22,13 +22,21 @@
             <td>{{speaker.name}}</td>
             <td>{{speaker.phone_number}}</td>
             <td>{{speaker.email}}</td>
-            <th><form action="{% url 'updateSpeaker' speaker.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
-            <th><form action="{% url 'deleteSpeaker' speaker.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            <td><form action="{% url 'updateSpeaker' speaker.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></td>
+            <td><form action="{% url 'deleteSpeaker' speaker.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></td>
             {% endfor %}
         </tr>
     </tbody>
 </table>
 
+
+
+
+
+{% endif %}
+
+{% endblock %}
+{% block footer %}
 
 <div class="pagination">
     <span class="step-links">
@@ -48,9 +56,4 @@
     </span>
 </div>
 </div>
-
-
-
-{% endif %}
-
 {% endblock %}

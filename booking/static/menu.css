@@ -1,0 +1,121 @@
+/* A simple, css only, (some-what) responsive menu */
+
+.menu  a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+  
+  .menu  ul {
+    list-style: none;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+ 
+  }
+  
+  .menu  li {
+    float: left;
+  }
+  
+  /* clear'n floats */
+  .menu ul:after {
+    clear: both;
+  }
+  
+  .menu ul:before,
+  ul:after {
+      content: " ";
+      display: table;
+  }
+  
+  .menu  nav {
+    position: relative;
+  }
+  
+  /* prime */
+  .menu  ul.primary li a {
+    display: block;
+    padding: 10px;
+    padding-right: 20px;
+  
+  }
+  
+  .menu  ul.primary li:last-child a {
+    border-right: none;
+  }
+  
+  .menu ul.primary li a:hover {
+    
+    background-color: #270949;
+    color: #eeeeee;
+  }
+  
+  /* subs */
+  .menu   ul.sub {
+    position: absolute;
+    z-index: 200;
+    box-shadow: 2px 2px 0 #BEBEBE;
+    width: 35%;
+    display:none;
+  }
+  
+  .menu  ul.sub li {
+    float: none;
+    margin: 0;
+  }
+  
+  .menu ul.sub li a {
+    border-bottom: 1px dotted #ccc;
+    border-right: none;
+    color: #270949;
+    background: #eeeeee;
+    padding: 15px 30px;
+  }
+  
+  .menu ul.sub li:last-child a {
+    border-bottom: none;
+  }
+  
+  .menu ul.sub li a:hover {
+    background-color: #270949;
+    color: #eeeeee;
+  }
+  
+  .menu ul.primary li:hover ul {
+    display: block;
+    background-color: #270949;
+    color: #eeeeee;
+ 
+  }
+  
+  .menu ul.primary li:hover a {
+    background: #fff;
+    color: #270949;
+    text-shadow: none;
+  }
+  
+  .menu ul.primary li:hover > a{
+    color: #270949;
+  } 
+
+  .notification {
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+  }
+    
+.notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+  }

@@ -69,13 +69,49 @@ class DeetsSerializer(serializers.ModelSerializer):
     """
     Used to validate additional user details recorded at signup
     """
-    phone_number=serializers.IntegerField()
     date_of_birth=serializers.DateField(input_formats=['%Y-%m-%d'])
     class Meta:
         model = Detail
         fields=("date_of_birth","phone_number","city","address")
-        
 
+    def validate_phone_number(self,value):
+        str_phonenumber=str(value)
+        valid_prefixes=[
+            "032",
+            "035",
+            "033",
+            "034",
+            "030",
+            "037",
+            "038",
+            "039",
+            "036",
+            "031",
+            "023",
+            "024",
+            "054",
+            "055",
+            "059",
+            "027",
+            "057",
+            "026",
+            "056",
+            "028",
+            "020",
+            "050"
+            ]        
+        if not str_phonenumber[:3] in str(valid_prefixes): 
+            raise serializers.ValidationError("Invalid Number")
+
+        if len(str_phonenumber)<10:
+            raise serializers.ValidationError("Phone number is too short")
+
+        if len(str_phonenumber)>10:
+            raise serializers.ValidationError("Phone number is too long")
+
+        return value
+        
+    
     
 class DetailSerializer(serializers.ModelSerializer):
     """
@@ -160,13 +196,20 @@ class BookingSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Booking
-        fields=["user","user_id","event","session","seats"]
-    user=serializers.SerializerMethodField()
+        fields=["event","session","seats"]
+   
+# class BookingSerializer(serializers.ModelSerializer):
+#     """
+#     """
+#     class Meta:
+#         model = Booking
+#         fields=["user","user_id","event","session","seats"]
+#     user=serializers.SerializerMethodField()
 
-    def get_user(self,obj):
-        return User.objects.get(id=obj.user_id).first_name+" "+User.objects.get(id=obj.user_id).last_name
+#     def get_user(self,obj):
+#         return User.objects.get(id=obj.user_id).first_name+" "+User.objects.get(id=obj.user_id).last_name
 
-        
+
 class Booking1Serializer(serializers.ModelSerializer):
     """
     """

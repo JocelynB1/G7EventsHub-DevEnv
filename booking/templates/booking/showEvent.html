@@ -6,15 +6,15 @@
 <div id="main-table">
     <table class="show-table">
     
-    <caption>Events</caption>
+    <caption><h2>Events</h2></caption>
     <thead>
         <tr>
-            <th>location</th>
-            <th>name</th>
-            <th>tag line</th>
-            <th>title</th>
-            <th>start time</th>
-            <th>end time</th>
+            <th>Location</th>
+            <th>Name</th>
+            <th>Tag line</th>
+            <th>Title</th>
+            <th>Start time</th>
+            <th>End time</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -28,13 +28,20 @@
             <td>{{event.title}}</td>
             <td>{{event.start_date}} {{event.start_hour}} {{event.start_minutes}} </td>
             <td>{{event.end_date}} {{event.end_hour}} {{event.end_minutes}} </td>
-            <th><form action="{% url 'updateEvent' event.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
-            <th><form action="{% url 'deleteEvent' event.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            <td><form action="{% url 'updateEvent' event.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></td>
+            <td><form action="{% url 'deleteEvent' event.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></td>
             {% endfor %}
         </tr>
     </tbody>
 </table>
 
+
+
+
+{% endif %}
+
+{% endblock %}
+{% block footer %}
 
 <div class="pagination">
     <span class="step-links">
@@ -54,9 +61,4 @@
     </span>
 </div>
 </div>
-
-
-
-{% endif %}
-
 {% endblock %}

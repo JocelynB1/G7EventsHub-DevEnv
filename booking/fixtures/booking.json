@@ -51,6 +51,88 @@
             "phone_number":"0203252874",
             "email":"kwamespeakerson@speakers.com"
         }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 2,
+        "fields": {
+            "name": "Akwasi Speakerson",
+            "phone_number":"0203252874",
+            "email":"Akwasispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 3,
+        "fields": {
+            "name": "Kwasi Speakerson",
+            "phone_number":"0203252874",
+            "email":"Kwasispeakerson@speakers.com"
+        }
+    }
+    ,
+    {
+        "model": "booking.speaker",
+        "pk": 4,
+        "fields": {
+            "name": "Akwesi Speakerson",
+            "phone_number":"0203252874",
+            "email":"Akwesispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 5,
+        "fields": {
+            "name": "Sisi Speakerson",
+            "phone_number":"0203252874",
+            "email":"kwamespeakerson@speakers.com"
+        }
+    }
+    ,
+    { 
+        "model": "booking.speaker",
+        "pk": 6,
+        "fields": {
+            "name": "Kacely Speakerson",
+            "phone_number":"0203252874",
+            "email":"Kacelyspeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 7,
+        "fields": {
+            "name": "Kosi Speakerson",
+            "phone_number":"0203252874",
+            "email":"Kosispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 8,
+        "fields": {
+            "name": "Kojo Speakerson",
+            "phone_number":"0203252874",
+            "email":"Kojospeakerson@speakers.com"
+        }
+    },{
+        "model": "booking.speaker",
+        "pk": 9,
+        "fields": {
+            "name": "Kwadwo Speakerson",
+            "phone_number":"0203252874",
+            "email":"Kwadwospeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "booking.speaker",
+        "pk": 10,
+        "fields": {
+            "name": "Jojo Speakerson",
+            "phone_number":"0203252874",
+            "email":"Jojospeakerson@speakers.com"
+        }
     }
     
 

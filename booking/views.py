@@ -174,6 +174,7 @@ def addSpeaker(request):
             if speaker_form.is_valid():
                 speaker_form.save()
                 note="New speaker added"
+                return HttpResponseRedirect(reverse('booking:showSpeaker'))
             return render(request, 
             "booking/addSpeaker.html",
             {
@@ -211,7 +212,7 @@ def addSession(request):
 class EventListView(generic.ListView ):
     Model=Event
     queryset=Event.objects.all()
-    paginate_by = 25
+    paginate_by = 5
     template_name="booking/showEvent.html"
     context_object_name = 'events' 
 
@@ -233,7 +234,7 @@ class EventDeleteView(generic.DeleteView):
 class BookingListView(generic.ListView ):
     Model=Booking
     queryset=Booking.objects.all()
-    paginate_by = 25
+    paginate_by = 5
     template_name="booking/showBooking.html"
     context_object_name = 'booking' 
 
@@ -255,7 +256,7 @@ class BookingDeleteView(generic.DeleteView):
 class LocationListView(generic.ListView ):
     Model=Location
     queryset=Location.objects.all()
-    paginate_by = 25
+    paginate_by = 5
     template_name="booking/showLocation.html"
     context_object_name = 'location' 
 
@@ -277,7 +278,7 @@ class LocationDeleteView(generic.DeleteView):
 class SessionListView(generic.ListView ):
     Model=Session
     queryset=Session.objects.all()
-    paginate_by = 25
+    paginate_by = 5
     template_name="booking/showSession.html"
     context_object_name = 'session' 
 
@@ -299,7 +300,7 @@ class SessionDeleteView(generic.DeleteView):
 class SpeakerListView(generic.ListView ):
     Model=Speaker
     queryset=Speaker.objects.all()
-    paginate_by = 25
+    paginate_by = 5
     template_name="booking/showSpeaker.html"
     context_object_name = 'speaker' 
 

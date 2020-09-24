@@ -5,6 +5,7 @@ from datetime import date
 from django.core.validators import MaxValueValidator, MinValueValidator
 #date must bee after today, cant have two sessions i same session in one day
 # Create your models here.
+
 class Location(models.Model):
     name=models.CharField(max_length=100)
     city= models.CharField(max_length=100)

@@ -22,7 +22,7 @@ class App extends React.Component {
       onSelect: this.handleMenuRequest,
       message: "",
       setMessage: this.setMessage,
-      onErrors: this.onErrors,
+      onErrors: this.onErrors
 
 
     }
@@ -34,11 +34,17 @@ class App extends React.Component {
 
   }
   onSuccess = (next) => {
+  
     this.setState({
       requestedComponent: next.requestedComponent,
       message: next.message
     })
-
+  }
+  onFailure = (next) => {
+   
+    this.setState({
+      message: next.message
+    })
   }
 
   onErrors = (err) => {

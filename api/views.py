@@ -84,8 +84,30 @@ class BookingCreateView(CreateAPIView):
 
     def create(self, request, *args, **kwargs): 
         data=request.data
-        serializer=Booking11Serializer(data=data)
-        if(True):
+        booking_data={}
+        booking_data["user"]=request.user.id
+        booking_data["event"]=data.get("id_event")
+        booking_data["session"]=data.get("id_session")
+        booking_data["seats"]=data.get("seats")
+
+
+        booking1_data={}
+        booking1_data["user"]=request.user.id
+        booking1_data["event"]=data.get("id_event1")
+        booking1_data["session"]=data.get("id_session1")
+        booking1_data["seats"]=data.get("seats1")
+
+        booking2_data={}
+        booking2_data["user"]=request.user.id
+        booking2_data["event"]=data.get("id_event2")
+        booking2_data["session"]=data.get("id_session2")
+        booking2_data["seats"]=data.get("seats2")
+
+        serializer=BookingSerializer(data=data)
+        serializer1=BookingSerializer(data=booking1_data)
+        serializer2=BookingSerializer(data=booking2_data)
+
+        if serializer.is_valid(raise_exception=True) and serializer1.is_valid(raise_exception=True) and serializer2.is_valid(raise_exception=True):
             booking=Booking()
             booking1=Booking()
             booking2=Booking()
@@ -104,6 +126,10 @@ class BookingCreateView(CreateAPIView):
             booking.save()
             booking1.save()
             booking2.save()
+            
+            # Booking.objects.create(**booking_data)
+            # Booking.objects.create(**booking1_data)
+            # Booking.objects.create(**booking2_data)
 
         return Response()
   

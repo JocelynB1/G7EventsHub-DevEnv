@@ -37,7 +37,7 @@ function Form(props) {
                         errorArr.push(key + " : " + err[key])
                     )
                     props.onErrors({ errors: errorArr })
-
+                    // props.onFailure({message:errorArr})
              
             } else {
                 let d = await data.json()
@@ -51,39 +51,10 @@ function Form(props) {
             
         } catch(error){
             props.onErrors({ errors: error.text })
+            // props.onFailure({message:error.text})
+
      }
-    //     fetch("http://127.0.0.1:8000/api/register/",
-    //         {
-    //             method: "POST",
-    //             body: formData
-    //         }
-    //     ).then(
-
-    //         data => {
-
-    //             if (!data.ok) {
-    //                 //         console.log(data.text())
-    //                 data.json().then((err) => {
-    //                     let errorArr = []
-    //                     Object.keys(err).map(key =>
-    //                         errorArr.push(key + " : " + err[key])
-    //                     )
-    //                     props.onErrors({ errors: errorArr })
-
-    //                 });
-    //             } else {
-    //                 data.json().then(
-    //                     data => {
-    //                         console.log(data)
-    //                     }
-
-    //                 ).catch(error =>
-    //                     props.onErrors({ errors: error.text })
-
-    //                 )
-    //             }
-    //         }
-    //     )
+    
      }
 
         return (

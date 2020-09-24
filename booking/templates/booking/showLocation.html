@@ -7,13 +7,13 @@ fields=["user","event","session","seats"]
 <div id="main-table">
     <table class="show-table">
     
-    <caption>Location</caption>
+    <caption><h2>Location</h2></caption>
     <thead>
         <tr>
-            <th>name</th>
-            <th>city</th>
-            <th>address</th>
-            <th>room capacity</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Room capacity</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -25,13 +25,20 @@ fields=["user","event","session","seats"]
             <td>{{location.city}}</td>
             <td>{{location.address}}</td>
             <td>{{location.room_capacity}}</td>
-            <th><form action="{% url 'updateLocation' location.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
-            <th><form action="{% url 'deleteLocation' location.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            <td><form action="{% url 'updateLocation' location.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></td>
+            <td><form action="{% url 'deleteLocation' location.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></td>
             {% endfor %}
         </tr>
     </tbody>
 </table>
 
+
+
+
+{% endif %}
+
+{% endblock %}
+{% block footer %}
 
 <div class="pagination">
     <span class="step-links">
@@ -51,8 +58,4 @@ fields=["user","event","session","seats"]
     </span>
 </div>
 </div>
-
-
-{% endif %}
-
 {% endblock %}

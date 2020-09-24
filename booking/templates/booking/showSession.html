@@ -6,10 +6,10 @@ fields=["user","event","session","seats"]
 {% if session %}
 <div id="main-table">
     <table class="show-table">    
-<caption>Session</caption>
+<caption><h2>Session</h2></caption>
     <thead>
         <tr>
-            <th>description</th>
+            <th>Description</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -18,13 +18,19 @@ fields=["user","event","session","seats"]
         {% for session in page_obj %}
         <tr>
             <td>{{session.description}}</td>
-            <th><form action="{% url 'updateSession' session.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></th>
-            <th><form action="{% url 'deleteSession' session.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></th>
+            <td><form action="{% url 'updateSession' session.id %}" method="get">{% csrf_token %}<input class="edit" type="submit" value="Edit"></form></td>
+            <td><form action="{% url 'deleteSession' session.id %}" method="post">{% csrf_token %}<input class="delete" type="submit" value="Delete"></form></td>
             {% endfor %}
         </tr>
     </tbody>
 </table>
 
+
+
+{% endif %}
+
+{% endblock %}
+{% block footer %}
 
 <div class="pagination">
     <span class="step-links">
@@ -44,9 +50,4 @@ fields=["user","event","session","seats"]
     </span>
 </div>
 </div>
-
-
-
-{% endif %}
-
 {% endblock %}

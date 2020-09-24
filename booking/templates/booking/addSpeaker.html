@@ -3,9 +3,23 @@
 {% load static %}
 {% block content %}
 
-<div id="add_form_grid" class="form">
+<div id="add_form_grid" >
 <div class="add_form">
-    <form method="post" id="speaker" action="{% url 'addSpeaker' %}">
+    {% if speaker_form.errors %}
+    {% for field in speaker_form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in speaker_form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+    <form method="post" id="speaker" class="addUpdate" action="{% url 'addSpeaker' %}">
         <table>
         <th>Register a new speaker</th>
 

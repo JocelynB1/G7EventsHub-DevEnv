@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link href="{% static 'menu.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -14,17 +15,60 @@
         <div class="logo1">
             <img src="{% static 'img/logo.svg' %}" alt="" srcset="" id="pic_logo">
         </div>
-        <a href="{% url 'booking' %}">Show Booking</a>
-        <a href="{% url 'events' %}">Show Events</a>
-        <a href="{% url 'location' %}">Show Locations</a>
-        <a href="{% url 'speaker' %}">Show Speakers</a>
-        <a href="{% url 'bookingDashboard' %}">All</a>
-        <a href="{% url 'addBooking' %}">Add Booking</a>
-        <a href="{% url 'addEvent' %}">Add Event</a>
-        <a href="{% url 'addLocation' %}">Add Location</a>
-        <a href="{% url 'addSpeaker' %}">Add Speaker</a>
-     </nav>
+        <nav style="width: 100%;">
+            <ul class="primary">
+                <li>
+                    <a href="">Booking</a>
+                    <ul class="sub">
+                        <li>
+                            <a href="{% url 'booking' %}">Show Booking</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'addBooking' %}">Add Booking</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Events</a>
+                    <ul class="sub">
+                        <li>
+                            <a href="{% url 'events' %}">Show Events</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'addEvent' %}">Add Event</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Locations</a>
+                    <ul class="sub">
+                        <li>
+                            <a href="{% url 'location' %}">Show Locations</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'addLocation' %}">Add Location</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">Speaker</a>
+                    <ul class="sub">
+                        <li>
+                            <a href="{% url 'speaker' %}">Show Speakers</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'addSpeaker' %}">Add Speaker</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </nav>
     {% block content %}
     {% endblock %}
-
+    <footer id="footer">
+        {% block footer %}
+        {% endblock %}
+    </footer>
 </body>

@@ -12,8 +12,7 @@ class LoginPage extends React.Component {
             
                 <section id="main">
                   <Welcome />
-                  <Form formType={this.props.requestedComponent} onErrors={this.props.onErrors}
-                   onSuccess={this.props.onSuccess}  />
+                  <Form  {...this.props}  />
                 </section>
                )
         }

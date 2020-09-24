@@ -31,6 +31,45 @@ class SpeakerForm(forms.ModelForm):
     class Meta:
         model=Speaker
         fields=["name","phone_number","email"]
+    
+    def clean_phone_number(self):
+        cd=self.cleaned_data
+        str_phonenumber=str(cd["phone_number"])
+        valid_prefixes=[
+            "032",
+            "035",
+            "033",
+            "034",
+            "030",
+            "037",
+            "038",
+            "039",
+            "036",
+            "031",
+            "023",
+            "024",
+            "054",
+            "055",
+            "059",
+            "027",
+            "057",
+            "026",
+            "056",
+            "028",
+            "020",
+            "050"
+            ]        
+        if not str_phonenumber[:3] in str(valid_prefixes): 
+            raise forms.ValidationError("Invalid Number")
+
+        if len(str_phonenumber)<10:
+            raise forms.ValidationError("Phone number is too short")
+
+        if len(str_phonenumber)>10:
+            raise forms.ValidationError("Phone number is too long")
+
+        return cd["phone_number"]
+    
     # name=forms.CharField(label="Name of speaker",max_length=100)
     # phone_number=forms.IntegerField(label="Phone #")
     # email=forms.EmailField(label="Email address of speaker")

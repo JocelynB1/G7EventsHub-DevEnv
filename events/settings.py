@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     "booking",
     "rest_framework",
     "rest_framework.authtoken",
-    "corsheaders"
+    "corsheaders",
+    "django_seed"
 ]
 REST_FRAMEWORK={
     "DEFAULT_AUTHENTICATION_CLASSES":[

@@ -36,7 +36,6 @@ function EventTable(props) {
         }
         loadDetails()
     }, [props.token]);
-  console.log(details)
     let thead = "<thead><tr><th>Name</th><th>Location</th><th>Title</th><th>Tag Line</th><th>Speaker</th><th>Session</th><th>Start Date</th><th>End Date</th><th>Seats</th></tr></thead>"
     let td = "";
     details.forEach(
