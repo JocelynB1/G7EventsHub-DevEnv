@@ -4,6 +4,8 @@ from .models import *
 from django.views import generic
 from django.contrib.auth.decorators import login_required 
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 @login_required
@@ -112,12 +114,8 @@ def addBooking(request):
             if booking_form.is_valid():
                 booking_form.save()
                 note="Booked"
-            return render(request, 
-            "booking/addBooking.html",
-            {
-            'note':note,
-            "booking_form":booking_form
-            })
+                return HttpResponseRedirect(reverse('booking'))
+
     return render(request,"booking/addBooking.html",{
         "booking_form":booking_form
         })
@@ -126,19 +124,12 @@ def addLocation(request):
     location_form=LocationForm()
     
     if request.method=="POST":
-        note=""
         if 'location-form' in request.POST:
             location_form= LocationForm(request.POST)
             if location_form.is_valid():
                 location_form.save()
-                note="New location added"
-            return render(request, 
-            "booking/addLocation.html",
-            {
-            'note':note,
-            "location_form":location_form,
-            })
-   
+                return HttpResponseRedirect(reverse('location'))
+  
     return render(request,"booking/addLocation.html",{
         "location_form":location_form,
         })
@@ -147,45 +138,29 @@ def addEvent(request):
     event_form=EventForm()
     
     if request.method=="POST":
-        note=""
         if 'event-form' in request.POST:
             event_form= EventForm(request.POST)
             if event_form.is_valid():
                 event_form.save()
-                note="New event added"
-            return render(request, 
-            "booking/addEvent.html",
-            {
-            'note':note,
-            "event_form":event_form,
-            })
-    
+                return HttpResponseRedirect(reverse('events'))
+
+        
     return render(request,"booking/addEvent.html",{
         "event_form":event_form,
         })
 @login_required
 def addSpeaker(request):
     speaker_form=SpeakerForm()
-    
     if request.method=="POST":
-        note=""
-        if 'speaker_form' in request.POST:
-            speaker_form= SpeakerForm(request.POST)
-            if speaker_form.is_valid():
-                speaker_form.save()
-                note="New speaker added"
-                return HttpResponseRedirect(reverse('booking:showSpeaker'))
-            return render(request, 
-            "booking/addSpeaker.html",
-            {
-            'note':note,
+        speaker_form= SpeakerForm(request.POST)
+        if speaker_form.is_valid():
+            speaker_form.save()
+            return HttpResponseRedirect(reverse('speaker'))
+            
+   
+    return render(request,"booking/addSpeaker.html",{
             "speaker_form":speaker_form,
             })
-        
-
-    return render(request,"booking/addSpeaker.html",{
-        "speaker_form":speaker_form,
-        })
 @login_required
 def addSession(request):
     session_form=SessionForm()

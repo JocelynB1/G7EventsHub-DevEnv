@@ -12,23 +12,21 @@ from rest_framework import status
 from django.db import transaction
 
 # Create your views here.
+#Used for login
 class UserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all()
     serializer_class=LoginSerializer
-
-class ListDetails(generics.ListAPIView):
-    queryset=Detail.objects.all()
-    serializer_class=DetailSerializer
+#Used for sign up
+class SignUpViewSet(viewsets.ModelViewSet):
+    queryset=User.objects.all()
+    serializer_class=SignUpSerializer
 
 class DetailDetails(generics.RetrieveAPIView):
     queryset=Detail.objects.all()
     serializer_class=DetailSerializer
 
 
-class SignUpViewSet(viewsets.ModelViewSet):
-    queryset=User.objects.all()
-    serializer_class=SignUpSerializer
-
+#Enables the loged in user to see their profile
 class DetailViewSet(viewsets.ModelViewSet):
     queryset=Detail.objects.all()
     def get_queryset(self):
@@ -37,7 +35,7 @@ class DetailViewSet(viewsets.ModelViewSet):
     serializer_class = DetailSerializer
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
-
+#Used for signup
 class SignupCreateView(CreateAPIView):
     serializer_class = SignUpSerializer
 
@@ -67,18 +65,7 @@ class SignupCreateView(CreateAPIView):
                return Response(status=status.HTTP_200_OK)
       transaction.rollback()
 
-class LocationCreateView(CreateAPIView):
-    serializer_class = LocationSerializer
-
-class EventCreateView(CreateAPIView):
-    serializer_class = EventSerializer
-
-class SpeakerCreateView(CreateAPIView):
-    serializer_class = SpeakerSerializer
-
-class SessionCreateView(CreateAPIView):
-    serializer_class = SessionSerializer
-
+#Used to enable the user to book an event
 class BookingCreateView(CreateAPIView):
     serializer_class = Booking1Serializer
 
@@ -126,30 +113,15 @@ class BookingCreateView(CreateAPIView):
             booking.save()
             booking1.save()
             booking2.save()
-            
-            # Booking.objects.create(**booking_data)
-            # Booking.objects.create(**booking1_data)
-            # Booking.objects.create(**booking2_data)
-
         return Response()
   
-    
-class BookingList(ListAPIView):
-    serializer_class = BookingSerializer
-    queryset=Booking.objects.all()
-    
-class SessionList(ListAPIView):
-    serializer_class = SessionSerializer
-    queryset=Session.objects.all()
-    authentication_classes = [TokenAuthentication, ]
-    permission_classes = [IsAuthenticated, ]
-
+#used to retrieve all events
 class EventList(ListAPIView):
     serializer_class = EventSerializer
     queryset=Event.objects.all()
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
-
+#used to retreive a list of events booked by the user
 class MyEventList(ListAPIView):
     serializer_class = MyEventSerializer
     def get_queryset(self):

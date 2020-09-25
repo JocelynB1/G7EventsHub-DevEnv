@@ -2,7 +2,7 @@
 {% block content %}
 <div class="main">
     <h1>Log out?</h1>
- <form action="{% url 'account_logout' %}" method="post">
+ <form action="{% url 'logout1' %}" method="post">
      {% csrf_token %}
      {{form }}
      <button type="submit">Log out</button>

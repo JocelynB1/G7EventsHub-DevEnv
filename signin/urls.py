@@ -20,7 +20,9 @@ from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
-    path('', include('django.contrib.auth.urls')),
     path("accounts/profile/",views.confirm,name="accounts/profile"),
+    path('account/logout/', views.logout_view, name='logout1'),
+    path('', include('django.contrib.auth.urls')),
+
 
 ]

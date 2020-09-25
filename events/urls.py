@@ -19,11 +19,11 @@ from rest_framework.authtoken.views import obtain_auth_token
 from booking.views import  BookingListView
 
 urlpatterns = [
+    path('',include('signin.urls')),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
     path("auth/",obtain_auth_token),
     path('',include('registration.urls')),
-    path('',include('signin.urls')),
     path('',include('booking.urls')),
     path('',BookingListView.as_view(), name='home'),
     path('',BookingListView.as_view()),

@@ -60,7 +60,7 @@ class SpeakerForm(forms.ModelForm):
             "050"
             ]        
         if not str_phonenumber[:3] in str(valid_prefixes): 
-            raise forms.ValidationError("Invalid Number")
+            raise forms.ValidationError("Invalid Number"+str_phonenumber[:3])
 
         if len(str_phonenumber)<10:
             raise forms.ValidationError("Phone number is too short")
@@ -70,6 +70,13 @@ class SpeakerForm(forms.ModelForm):
 
         return cd["phone_number"]
     
+    
+    def clean_email(self):
+        cd=self.cleaned_data
+        value=cd["email"]    
+        if Speaker.objects.filter(email=value).exists():
+            raise forms.ValidationError("Email already exists.Please choose another")
+
     # name=forms.CharField(label="Name of speaker",max_length=100)
     # phone_number=forms.IntegerField(label="Phone #")
     # email=forms.EmailField(label="Email address of speaker")

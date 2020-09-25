@@ -32,7 +32,6 @@ class SignUpSerializer(serializers.ModelSerializer):
     """
     Used to register new users
     """
-    # email=serializers.EmailField(validators =[unique-True] )
     confirm_password=serializers.SerializerMethodField()
     confirm_email=serializers.SerializerMethodField()
     class Meta:
@@ -163,6 +162,7 @@ class DetailSerializer(serializers.ModelSerializer):
 
 class LocationSerializer(serializers.ModelSerializer):
     """
+    Used to fill the location select element in the frontend
     """
     class Meta:
         model = Location
@@ -170,48 +170,27 @@ class LocationSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     """
+    Used to display all events
     """
     class Meta:
         model = Event
         fields=["id","location","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
 
 
-class SpeakerSerializer(serializers.ModelSerializer):
-    """
-    """
-    class Meta:
-        model = Speaker
-        fields=["name","phone_number","email"]
 
-
-class SessionSerializer(serializers.ModelSerializer):
-    """
-    """
-    class Meta:
-        model = Session
-        fields=["id","description"]
         
 class BookingSerializer(serializers.ModelSerializer):
     """
+    Used to book events
     """
     class Meta:
         model = Booking
         fields=["event","session","seats"]
    
-# class BookingSerializer(serializers.ModelSerializer):
-#     """
-#     """
-#     class Meta:
-#         model = Booking
-#         fields=["user","user_id","event","session","seats"]
-#     user=serializers.SerializerMethodField()
-
-#     def get_user(self,obj):
-#         return User.objects.get(id=obj.user_id).first_name+" "+User.objects.get(id=obj.user_id).last_name
-
 
 class Booking1Serializer(serializers.ModelSerializer):
     """
+    Used for event booking
     """
     id_session1=serializers.IntegerField()
     id_session2=serializers.IntegerField()
@@ -222,17 +201,11 @@ class Booking1Serializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields=["event","id_event1","id_event2","session","id_session1","id_session2","seats","seats1","seats2"]
-        
 
-class Booking11Serializer(serializers.ModelSerializer):
-    """
-    """
-    class Meta:
-         model = Booking
-         fields=["user","event","session","seats"]
 
 class MyEventSerializer(serializers.ModelSerializer):
     """
+    Used to retreive events and related information
     """
     location=serializers.SerializerMethodField()    
     event_name=serializers.SerializerMethodField()    

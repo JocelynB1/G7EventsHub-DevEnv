@@ -15,8 +15,10 @@
         <div class="logo1">
             <img src="{% static 'img/logo.svg' %}" alt="" srcset="" id="pic_logo">
         </div>
-        <nav style="width: 100%;">
+        {% if user.is_authenticated %}
+        <nav>
             <ul class="primary">
+            {% if user.is_superuser %}
                 <li>
                     <a href="">Booking</a>
                     <ul class="sub">
@@ -62,8 +64,16 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{% url 'logout1' %}">Logout</a>
+                </li>
+        
+                
+        {% endif %}
+
             </ul>
         </nav>
+        {% endif %}
     </nav>
     {% block content %}
     {% endblock %}

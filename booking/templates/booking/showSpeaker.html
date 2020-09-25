@@ -5,6 +5,9 @@
 {% if speaker %}
 <div id="main-table">
     <table class="show-table">
+        {% if note %}
+        <p>{{note}}</p>
+        {% endif %}
     
     <caption><h2>Speaker</h2></caption>
     <thead>

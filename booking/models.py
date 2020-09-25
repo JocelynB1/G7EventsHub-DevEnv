@@ -17,7 +17,7 @@ class Location(models.Model):
 
 class Speaker(models.Model):
     name=models.CharField(max_length=100)
-    phone_number=models.IntegerField()
+    phone_number=models.CharField(max_length=10)
     email=models.EmailField()
 
     def __str__(self):

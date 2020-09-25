@@ -6,7 +6,7 @@ from django.conf import settings
 class Detail(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     date_of_birth=models.DateField(blank=True,null=True)
-    phone_number= models.CharField(max_length=100)
+    phone_number= models.CharField(max_length=10)
     city= models.CharField(max_length=100)
     address= models.CharField(max_length=500)
     created_at=models.DateTimeField(auto_now_add=True)
