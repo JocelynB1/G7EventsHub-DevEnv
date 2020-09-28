@@ -8,10 +8,9 @@
   .logo1{
     margin: 0;
 }
-  @media(min-width:851px){
+  /* @media(min-width:851px){
     nav{
         display:flex;
-        /* border-bottom:1px solid #ccc; */
      
     }
     a{
@@ -48,4 +47,4 @@
         background-color:#ffcc22;
         text-decoration: underline;
     }
-  }
+  } */

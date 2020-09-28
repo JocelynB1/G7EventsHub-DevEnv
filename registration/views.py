@@ -35,7 +35,6 @@ class RegisterUserWithDetails(CreateView):
             new_detail.date_of_birth =form.cleaned_data["date_of_birth"]
             new_detail.phone_number =form.cleaned_data["phone_number"]
             new_detail.city =form.cleaned_data["city"]
-            new_detail.address =form.cleaned_data["address"]
             new_detail.save()
             return super().form_valid(form)
         else:

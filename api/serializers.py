@@ -4,8 +4,7 @@ from rest_framework.serializers import ValidationError
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import Detail
-from booking.models import *
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation 
@@ -71,7 +70,7 @@ class DeetsSerializer(serializers.ModelSerializer):
     date_of_birth=serializers.DateField(input_formats=['%Y-%m-%d'])
     class Meta:
         model = Detail
-        fields=("date_of_birth","phone_number","city","address")
+        fields=("date_of_birth","phone_number","city")
 
     def validate_phone_number(self,value):
         str_phonenumber=str(value)
@@ -126,7 +125,7 @@ class DetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Detail
-        fields=("user_id", "first_name","last_name","email","username","date_of_birth","phone_number","city","address")
+        fields=("user_id", "first_name","last_name","email","username","date_of_birth","phone_number","city")
 
     def get_first_name(self,obj):
         return Detail.objects.get(user_id=obj.user_id).user.first_name

@@ -16,8 +16,7 @@ class UserRegistrationForm(forms.ModelForm):
     date_of_birth=forms.DateField(label="Date of birth",widget=forms.SelectDateWidget)
     phone_number=forms.CharField(label="Phone #",max_length=100)
     city=forms.CharField(label="City",max_length=100)
-    address=forms.CharField(label="Address",max_length=500,widget=forms.Textarea)
-
+ 
     def clean_confirm_password(self):
         cd=self.cleaned_data
         if cd["password"]!=cd["confirm_password"]:

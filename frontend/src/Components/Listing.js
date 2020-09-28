@@ -5,8 +5,8 @@ import {
     Route,
     Link
   } from "react-router-dom";
-import "./index.css";
-import "./index.css"
+// import "./index.css";
+// import "./index.css"
 
 
 import one from "./MyImages/one.jpg";

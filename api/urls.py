@@ -13,6 +13,8 @@ urlpatterns=[
     path("eventlist/",EventList.as_view()),
     path("booking/",BookingCreateView.as_view()),
     path("<int:pk>", DetailDetails.as_view()),
-    path("",include(router.urls))
+    path("",include(router.urls)),
+    # path('bookingDashboard/',views.booking,name="bookingDashboard"),
+
     
 ]

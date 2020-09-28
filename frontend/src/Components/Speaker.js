@@ -1,6 +1,6 @@
 import React from 'react';
 import image from './image.jpg';
-import "./index.css"
+// import "./index.css"
 
 export default function Speaker() {
     return (

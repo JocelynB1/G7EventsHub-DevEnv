@@ -16,7 +16,6 @@ function Form(props) {
         formData.append("password", document.querySelector("#password").value)
         formData.append("date_of_birth", document.querySelector("#date_of_birth").value)
         formData.append("city", document.querySelector("#city").value)
-        formData.append("address", document.querySelector("#address").value)
        let data =await fetch("http://127.0.0.1:8000/api/register/",
         {
             method: "POST",
@@ -58,7 +57,7 @@ function Form(props) {
      }
 
         return (
-            <div className="form" >
+            <div className="form" className="signUpForm" >
 
                 {/* craeting input fields for the sign up form */}
                 <form id="form">
@@ -88,12 +87,10 @@ function Form(props) {
                     <br />
                     <input type="email" required placeholder="Email *" id="email" className="email" />
                     <input type="email" required placeholder="Confirm Email *" id="confirm_email" className="confirm_email" />
-                    <br/>
-                    <input type="text" required placeholder="Address *" id="address" className="address" width="200%" />
 
                     <br />
 
-                    <input type="submit" onClick={postSignUp} className="button" value="Sign Up" />
+                    <button type="submit" onClick={postSignUp}  value="Sign Up" >Sign Up</button>
 
                 </form>
 

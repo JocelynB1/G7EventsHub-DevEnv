@@ -10,6 +10,19 @@ body{
                         "... main main ...";
     
 }
+#main{
+  display: grid;
+  grid-area: main;
+  grid-template-columns: 40vw 60vw;
+  grid-template-rows: 100%;
+  grid-template-areas: "Welcome form"; 
+}
+.Welcome{
+  grid-area:Welcome;
+}
+.form{
+  grid-area:form;
+}
 ul{
     display:flex;
     justify-content: space-around;
@@ -50,13 +63,6 @@ th, td {
 }
 tr:hover {background-color: #f5f5f5;}
 tr:nth-child(even) {background-color: #f2f2f2;}
-#main{
-    display: grid;
-    grid-area: main;
-    grid-template-columns: 40vw 60vw;
-    grid-template-rows: 100%;
-    grid-template-areas: "Welcome form"; 
-}
 th {
   background-color: #270949;
   color: white;
@@ -124,9 +130,7 @@ th {
     margin-top: 2em;
     margin-left: 1em;
 }
-.Welcome{
-    grid-area:Welcome;
-}
+
 .errors{
     /* grid-area:errors; */
     list-style: none;
@@ -136,7 +140,7 @@ th {
     margin-bottom:1em;
 
 }
-.sbutton {
+/* .sbutton {
     height: 110px;
     width: 300px;
     padding: 32px 16px;
@@ -149,9 +153,9 @@ th {
     border-radius: 25px; 
     margin-left: 100px ;
    
-}
+} */
 
-.sbutton:hover {
+/* .sbutton:hover {
     background-color: #3e8e41;
     color: white;
     font-size: 45px;
@@ -166,7 +170,7 @@ th {
 nav{
   text-align: center;
 
-}
+} */
 
 .Welcomelogo {
   grid-area:logo;

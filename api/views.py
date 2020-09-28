@@ -59,7 +59,6 @@ class SignupCreateView(CreateAPIView):
                detail.date_of_birth=data['date_of_birth']
                detail.phone_number=data["phone_number"]
                detail.city=data["city"]
-               detail.address=data["address"]
                user.save()
                detail.save()
                return Response(status=status.HTTP_200_OK)

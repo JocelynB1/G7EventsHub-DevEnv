@@ -1,6 +1,6 @@
 import React from 'react';
 import navLogo from "./navLogo.png";
-import "./index.css";
+// import "./index.css";
 
 export default function LandingNav() {
     return (

@@ -5,10 +5,10 @@ class Login extends React.Component {
         super(props);
         this.state = {
             credentials: { username: "", password: "" },
-            redirect: null 
+            redirect: null
         }
     }
-    
+
     postLogin = async (event) => {
         console.log(JSON.stringify(this.state.credentials))
 
@@ -31,14 +31,14 @@ class Login extends React.Component {
                 this.props.onErrors({ errors: errorArr })
             } else {
                 let d = await data.json()
-                this.props.onLogin({ 
+                this.props.onLogin({
                     token: d.token,
-                     credentials: this.state.credentials,
-                      status: "ATTENDEE_SIGNED_IN",
-                      requestedComponent:"home",
-                      message:"Successfuly logged in"
-                    })
-           
+                    credentials: this.state.credentials,
+                    status: "ATTENDEE_SIGNED_IN",
+                    requestedComponent: "home",
+                    message: "Successfuly logged in"
+                })
+
             }
         }
         catch (error) { console.log(error) }
@@ -90,20 +90,23 @@ class Login extends React.Component {
 
         return (
             <>
-                <div className="form">
+                <div className="logInForm" >
+                    <h1>Login here</h1>
                     <form method="post" id="form">
-                        <h2>Login</h2>
 
-                        <p>
-                            <label htmlFor="id_username">Username:</label>
-                            <input type="text" name="username" autoFocus autoCapitalize="none" autoComplete="username" maxLength="150" required id="id_username"
-                                value={this.state.credentials.username} onChange={this.handleChange} />
-                        </p>
-                        <p><label htmlFor="id_password">Password:</label>
-                            <input type="password" name="password" autoComplete="current-password" required id="id_password"
-                                value={this.state.credentials.password} onChange={this.handleChange} />
-                        </p>
-                        <input  onClick={this.postLogin} className="button" type="submit" value="Login"/>
+                        <label htmlFor="id_username">Username:</label>
+                        <input type="text" name="username" autoFocus
+                            maxLength="150" required id="id_username"
+                            value={this.state.credentials.username} 
+                            placeholder="Username *" onChange={this.handleChange} /><br />
+
+                        <label htmlFor="id_password">Password:</label>
+                        <input type="password" name="password"
+                         required id="id_password" placeholder="Password *"
+                         value={this.state.credentials.password}
+                         onChange={this.handleChange} /><br />
+
+                        <button onClick={this.postLogin} type="submit" value="Login">Log in</button>
                     </form>
                 </div>
             </>

@@ -1,31 +1,15 @@
-import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-import "./index.css";
-import EventListing from '../Pages1/EventListing';
+import React from 'react'
+import AfternoonSide from './AfternoonSide'
+import EveningSide from './EveningSide'
+import MorningSide from './MorningSide'
+import './landing.css';
 
 export default function Sessions() {
     return (
-        <Router>   
-
-                <div className= "button">
-
-                    <h1>Please Choose Your Preferred Event Session</h1>
-                  <Link to = "/eventlisting">  <button>MORNING</button> <br/></Link>
-                  <Link to = "">  <button>AFTERNOON</button> <br/> </Link>
-                  <Link to = ""> <button>EVENING</button> <br/></Link>
-
-                </div>
-
-            <Switch>
-            <Route exact strict path="/eventlisting">
-            <EventListing />
-          </Route>
-            </Switch>    
-        </Router>         
+        <div className = "sessions">
+            <MorningSide/>
+            <AfternoonSide/>
+            <EveningSide/>
+        </div>
     )
 }

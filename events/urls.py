@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework.authtoken.views import obtain_auth_token
-from booking.views import  BookingListView
+# from booking.views import  BookingListView
 
 urlpatterns = [
     path('',include('signin.urls')),
@@ -24,8 +24,8 @@ urlpatterns = [
     path('api/', include("api.urls")),
     path("auth/",obtain_auth_token),
     path('',include('registration.urls')),
-    path('',include('booking.urls')),
-    path('',BookingListView.as_view(), name='home'),
-    path('',BookingListView.as_view()),
+    # path('',include('booking.urls')),
+    # path('',BookingListView.as_view(), name='home'),
+    # path('',BookingListView.as_view()),
     
 ]
