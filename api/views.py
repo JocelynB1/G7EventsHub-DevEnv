@@ -170,6 +170,8 @@ class MorningEventList(ListAPIView):
         if Booking.objects.filter(user=user.id).filter(event__session="Morning").exists():
             event_id=Booking.objects.filter(user=user.id).filter(event__session="Morning").first().event.id
             return Event.objects.filter(id=event_id)
+        return Event.objects.filter(session="Morning")
+        
      
 
     authentication_classes = [TokenAuthentication, ]
@@ -197,6 +199,9 @@ class AfternoonEventList(ListAPIView):
         if Booking.objects.filter(user=user.id).filter(event__session="Afternoon").exists():
             event_id=Booking.objects.filter(user=user.id).filter(event__session="Afternoon").first().event.id
             return Event.objects.filter(id=event_id)
+        return Event.objects.filter(session="Afternoon")
+        
+        
        
 
     authentication_classes = [TokenAuthentication, ]
