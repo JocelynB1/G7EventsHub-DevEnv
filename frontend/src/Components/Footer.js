@@ -1,9 +1,8 @@
 import React from 'react';
-import "./landing.css";
+import "./footer.css";
 
 export default function Footer() {
     return (
-        <div>
             <footer>
             
                 <div className = "contact">
@@ -13,6 +12,6 @@ export default function Footer() {
                 </div>
 
             </footer>
-        </div>
+
     )
 }

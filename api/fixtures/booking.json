@@ -1,0 +1,255 @@
+[
+    {
+        "model": "api.session",
+        "pk": 1,
+        "fields": {
+            "description": "Morning"
+        }
+    },
+    {
+        "model": "api.session",
+        "pk": 2,
+        "fields": {
+            "description": "Afternoon"
+        }
+    },
+    {
+        "model": "api.session",
+        "pk": 3,
+        "fields": {
+            "description": "Evening"
+        }
+    },
+    {
+        "model": "api.location",
+        "pk": 1,
+        "fields": {
+            "name": "Ghana National Theatre",
+            "address": "South Liberia Road",
+            "city": "Accra",
+            "room_capacity": 1500
+        }
+    },
+    {
+        "model": "api.location",
+        "pk": 2,
+        "fields": {
+            "name": "Accra International Conference Centre",
+            "address": "Castle Rd",
+            "city": "Accra",
+            "room_capacity": 2500
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 1,
+        "fields": {
+            "name": "Kwame Speakerson",
+            "phone_number": "0203252874",
+            "email": "kwamespeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 2,
+        "fields": {
+            "name": "Akwasi Speakerson",
+            "phone_number": "0203252874",
+            "email": "Akwasispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 3,
+        "fields": {
+            "name": "Kwasi Speakerson",
+            "phone_number": "0203252874",
+            "email": "Kwasispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 4,
+        "fields": {
+            "name": "Akwesi Speakerson",
+            "phone_number": "0203252874",
+            "email": "Akwesispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 5,
+        "fields": {
+            "name": "Sisi Speakerson",
+            "phone_number": "0203252874",
+            "email": "kwamespeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 6,
+        "fields": {
+            "name": "Kacely Speakerson",
+            "phone_number": "0203252874",
+            "email": "Kacelyspeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 7,
+        "fields": {
+            "name": "Kosi Speakerson",
+            "phone_number": "0203252874",
+            "email": "Kosispeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 8,
+        "fields": {
+            "name": "Kojo Speakerson",
+            "phone_number": "0203252874",
+            "email": "Kojospeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 9,
+        "fields": {
+            "name": "Kwadwo Speakerson",
+            "phone_number": "0203252874",
+            "email": "Kwadwospeakerson@speakers.com"
+        }
+    },
+    {
+        "model": "api.speaker",
+        "pk": 10,
+        "fields": {
+            "name": "Jojo Speakerson",
+            "phone_number": "0203252874",
+            "email": "Jojospeakerson@speakers.com"
+        }
+    },
+    
+    {
+        "model": "api.event",
+        "pk": 1,
+        "fields": {
+            "location": 1,
+            "tag_line": "BOTANY",
+            "title": "A LADY'S GUIDE TO BOTANY",
+            "speaker": 2,
+            "session":"Morning",
+            "image": "pexels-photo-316465_f4MzDah.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 2,
+        "fields": {
+            "location": 1,
+            "tag_line": "Still here!",
+            "title": "Ain't Cancelled Series",
+            "session":"Midmorning",
+            "speaker": 1,
+            "image": "pexels-photo-1089438.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 3,
+        "fields": {
+            "location": 1,
+            "tag_line": "6.0 ONLINE",
+            "title": "Diamond Bound 6.0 ONLINE",
+            "session":"Afternoon",
+            "speaker": 5,
+            "image": "television-camera-men-outdoors-ballgame-159400.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 4,
+        "fields": {
+            "location": 2,
+            "tag_line": "Are You Ready?",
+            "title": "Hold On We're Coming",
+            "speaker": 6,
+            "session":"Morning",
+            "image": "pexels-photo-316465_t7EZgXO.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 5,
+        "fields": {
+            "location": 2,
+            "tag_line": "Yes Our Buds",
+            "title": "Baking with Our Buds",
+            "session":"Midmorning",
+            "speaker": 9,
+            "image": "pexels-photo-3184465.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 6,
+        "fields": {
+            "location": 2,
+            "tag_line": "Too Many Comics",
+            "title": "Comedy Crossing",
+            "speaker": 9,
+            "session":"Afternoon",
+            "image": "pexels-photo-3184465_P9Ck4M2.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 7,
+        "fields": {
+            "location": 1,
+            "tag_line": "Azubi World",
+            "title": "Azubi Africa",
+            "session":"Morning",
+            "speaker": 6,
+            "image": "television-camera-men-outdoors-ballgame-159400_MikKoea.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 8,
+        "fields": {
+            "location": 1,
+            "tag_line": "Not Just For Some",
+            "title": "Literacy for All",
+            "session":"Midmorning",
+            "speaker": 7,
+            "image": "pexels-photo-316465_fOf0thc.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 9,
+        "fields": {
+            "location": 1,
+            "tag_line": "Not Just For Some",
+            "title": "Literacy for All",
+            "speaker": 7,
+            "session":"Afternoon",
+            "image": "pexels-photo-316465_Rxox2aW.jpeg"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 10,
+        "fields": {
+            "location": 1,
+            "tag_line": "Twice the Duo as Duocon 2019",
+            "title": "Duocon 2020",
+            "speaker": 8,
+            "session":"Morning",
+            "image": "pexels-photo-3183150.jpeg"
+        }
+    }
+
+]

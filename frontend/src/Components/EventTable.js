@@ -35,16 +35,16 @@ function EventTable(props) {
             } catch (error) { console.log(error) }
         }
         loadDetails()
-    }, [props.token]);
-    let thead = "<thead><tr><th>Name</th><th>Location</th><th>Title</th><th>Tag Line</th><th>Speaker</th><th>Session</th><th>Start Date</th><th>End Date</th><th>Seats</th></tr></thead>"
+    }, [props.token]); 
+    let thead = "<thead><tr><th>Image</th><th>Location</th><th>Title</th><th>Tag Line</th><th>Speaker</th><th>Session</th><th>Seats</th></tr></thead>"
     let td = "";
     details.forEach(
         event => {
-            td += `<tr><td>${event.event_name}</td><td>${event.location}<td>${event.title}</td><td>${event.tag_line}</td><td>${event.speaker}</td><td>${event.session}</td><td>${event.start_date}</td><td>${event.end_date}</td><td>${event.seats}</td></tr>`
+            td += `<tr><td style=" width:25%;"><img style=" width:100%; height:5%;" src=${event.image} alt=${event.title}></img></td><td>${event.location}<td>${event.title}</td><td>${event.tag_line}</td><td>${event.speaker}</td><td>${event.session}</td><td>${event.seats}</td></tr>`
         })
     let table = "<table id=\"Table\">" + thead + "<tbody>" + td + "<tbody></table>";
     return (
-        <>
+        <> 
             <div id="table-main">
                 <br />
 

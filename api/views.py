@@ -66,54 +66,77 @@ class SignupCreateView(CreateAPIView):
 
 #Used to enable the user to book an event
 class BookingCreateView(CreateAPIView):
-    serializer_class = Booking1Serializer
+    serializer_class = BookingSerializer
 
     def create(self, request, *args, **kwargs): 
         data=request.data
         booking_data={}
         booking_data["user"]=request.user.id
         booking_data["event"]=data.get("id_event")
-        booking_data["session"]=data.get("id_session")
         booking_data["seats"]=data.get("seats")
 
 
-        booking1_data={}
-        booking1_data["user"]=request.user.id
-        booking1_data["event"]=data.get("id_event1")
-        booking1_data["session"]=data.get("id_session1")
-        booking1_data["seats"]=data.get("seats1")
-
-        booking2_data={}
-        booking2_data["user"]=request.user.id
-        booking2_data["event"]=data.get("id_event2")
-        booking2_data["session"]=data.get("id_session2")
-        booking2_data["seats"]=data.get("seats2")
-
+        
         serializer=BookingSerializer(data=data)
-        serializer1=BookingSerializer(data=booking1_data)
-        serializer2=BookingSerializer(data=booking2_data)
-
-        if serializer.is_valid(raise_exception=True) and serializer1.is_valid(raise_exception=True) and serializer2.is_valid(raise_exception=True):
+    
+        if serializer.is_valid(raise_exception=True):
             booking=Booking()
-            booking1=Booking()
-            booking2=Booking()
             booking.user=request.user
             booking.event=Event.objects.get(pk=data.get("event"))
-            booking.session=Session.objects.get(pk=data.get("session"))
             booking.seats=data.get("seats")
-            booking1.user=request.user
-            booking1.event=Event.objects.get(pk=data.get("id_event1"))
-            booking1.session=Session.objects.get(pk=data.get("id_session1"))
-            booking1.seats=data.get("seats1")
-            booking2.user=request.user
-            booking2.event=Event.objects.get(pk=data.get("id_event2"))
-            booking2.session=Session.objects.get(pk=data.get("id_session2"))
-            booking2.seats=data.get("seats2")
             booking.save()
-            booking1.save()
-            booking2.save()
         return Response()
+
+# class BookingCreateView(CreateAPIView):
+#     serializer_class = Booking1Serializer
+
+#     def create(self, request, *args, **kwargs): 
+#         data=request.data
+#         booking_data={}
+#         booking_data["user"]=request.user.id
+#         booking_data["event"]=data.get("id_event")
+#         booking_data["session"]=data.get("id_session")
+#         booking_data["seats"]=data.get("seats")
+
+
+#         booking1_data={}
+#         booking1_data["user"]=request.user.id
+#         booking1_data["event"]=data.get("id_event1")
+#         booking1_data["session"]=data.get("id_session1")
+#         booking1_data["seats"]=data.get("seats1")
+
+#         booking2_data={}
+#         booking2_data["user"]=request.user.id
+#         booking2_data["event"]=data.get("id_event2")
+#         booking2_data["session"]=data.get("id_session2")
+#         booking2_data["seats"]=data.get("seats2")
+
+#         serializer=BookingSerializer(data=data)
+#         serializer1=BookingSerializer(data=booking1_data)
+#         serializer2=BookingSerializer(data=booking2_data)
+
+#         if serializer.is_valid(raise_exception=True) and serializer1.is_valid(raise_exception=True) and serializer2.is_valid(raise_exception=True):
+#             booking=Booking()
+#             booking1=Booking()
+#             booking2=Booking()
+#             booking.user=request.user
+#             booking.event=Event.objects.get(pk=data.get("event"))
+#             booking.session=Session.objects.get(pk=data.get("session"))
+#             booking.seats=data.get("seats")
+#             booking1.user=request.user
+#             booking1.event=Event.objects.get(pk=data.get("id_event1"))
+#             booking1.session=Session.objects.get(pk=data.get("id_session1"))
+#             booking1.seats=data.get("seats1")
+#             booking2.user=request.user
+#             booking2.event=Event.objects.get(pk=data.get("id_event2"))
+#             booking2.session=Session.objects.get(pk=data.get("id_session2"))
+#             booking2.seats=data.get("seats2")
+#             booking.save()
+#             booking1.save()
+#             booking2.save()
+#         return Response()
   
+
 #used to retrieve all events
 class EventList(ListAPIView):
     serializer_class = EventSerializer
@@ -140,4 +163,22 @@ class LocationList(ListAPIView):
     permission_classes = [IsAuthenticated, ]
 
     
+class MorningEventList(ListAPIView):
+    serializer_class = EventSerializer
+    queryset=Event.objects.filter(session="Morning")
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
     
+
+class MidmorningEventList(ListAPIView):
+    serializer_class = EventSerializer
+    queryset=Event.objects.filter(session="Midmorning")
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]
+
+
+class AfternoonEventList(ListAPIView):
+    serializer_class = EventSerializer
+    queryset=Event.objects.filter(session="Afternoon")
+    authentication_classes = [TokenAuthentication, ]
+    permission_classes = [IsAuthenticated, ]

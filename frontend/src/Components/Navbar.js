@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuOptions from './MenuOptions'
 import navLogo from "./navLogo.png";
+import "./Navbar.css"
 // import "./index.css";
 
 class Navbar extends React.Component {
@@ -23,7 +24,7 @@ class Navbar extends React.Component {
     if (this.props.requestedComponent === "login" || this.props.requestedComponent === "register" || this.props.requestedComponent === null) {
       return (
         <>
-          <div className="landingNav" >
+          <div className = "navBar" style = {{color : "white"}} >
             <nav className="menu">
 
             </nav>
@@ -36,14 +37,14 @@ class Navbar extends React.Component {
     } else {
       return (
         <>
-          <div className="landingNav" >
-            <nav className="menu">
-              <div className="logoDiv">
-                <img src={navLogo} className="navLogo" alt="logo" />
+          <div  className="menu navBar" >
+            <nav >
+              <div>
+                <img src={navLogo} className="navLogo" alt="Logo" />
               </div>
-              <div className="menuDiv">
-                <ul className="menuList">
-                  <MenuOptions onSelect={this.props.onSelect} status={this.props.status} />
+              <div className="menuDiv" style = {{color: "white"}}>
+                <ul className="menuList" style = {{color: "white"}}>
+                  <MenuOptions {... this.props} />
                 </ul>
               </div>
             </nav>

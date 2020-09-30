@@ -4,15 +4,18 @@ body{
 .container{
     display: grid;
     grid-template-columns: 10vw 40vw 40vw 10vw;
-    grid-template-rows: 20vh 5vh  60vh;
+    grid-template-rows: 20vh 1vh  75vh auto;
     grid-template-areas: "... menu menu ..."
                          "messages messages messages messages" 
-                        "... main main ...";
+                         "... main main ..."
+                         "footer footer footer footer";
+                    
     
 }
 #main{
   display: grid;
   grid-area: main;
+  overflow: auto;
   grid-template-columns: 40vw 60vw;
   grid-template-rows: 100%;
   grid-template-areas: "Welcome form"; 
@@ -44,6 +47,7 @@ ul{
     grid-area:main;
     width:100%;
     height: 100%;
+    overflow: auto;
     grid-template-areas: "Table"; 
     
 
@@ -70,6 +74,7 @@ th {
 #landing{
   display: grid;
   grid-area: main;
+  overflow: auto;
   grid-template-columns: 100% ;
   grid-template-rows: 100%;
   grid-template-areas: "landingContentent"; 

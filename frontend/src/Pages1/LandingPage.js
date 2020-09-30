@@ -8,8 +8,7 @@ export default function LandingPage(props) {
         <div id="landing">
           
             <div className = "landingContentent">
-                <SessionSideBar/>
-                <Sessions/>
+                <Sessions  {...props} />
              </div>
         </div>
     )

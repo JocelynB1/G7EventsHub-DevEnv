@@ -3,18 +3,7 @@ body{
     color: #270949;
 }
 
-footer {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    /* border: 3px #270949 solid; */
-    font-style: "Courier new";
-    color: whitesmoke;
-    background-color: #270949;
-    float: bottom;
-    padding: 1% 2%;
-    justify-content: center;
-}
+
 
 /* footer > div {
     width: 30%;
@@ -22,57 +11,7 @@ footer {
     /* margin:  1% 2%; 
 } */
 
-.menuList{
-    list-style-type: none;
-    padding: 0;
-    height: 100%;
-    margin: 0;
-}
 
-.menulistItem{
-    list-style-type: none;
-    display: inline-block;
-    margin: 0px 50px;
-    font-size: larger;
-    
-}
-
-.menulistItem:hover{
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-
-.menulistItem:active{
-    text-transform: uppercase;
-    font-weight: bolder;
-}
-
-.menuDiv {
-    display: flex;
-    /* align-items: center; */
-} 
-
-.navLogo {
-    height: 10%;
-    width: 13%;
-    float: left;
-    margin-right: 40%;
-    border-radius: 25px;
-    padding: 1px;
-    /* margin-left: 2$; */
-}
-
-.navBar{
-    margin: 1%;
-    width: 98%;
-    height: 15%;
-    background-color: #270949;
-    font-size: large;
-    /* border: 3px #270949 solid; */
-    /* position: fixed; */
-    border-radius: 20px;
-
-}
 .sessions {
     display: flex;
     flex-direction: row;

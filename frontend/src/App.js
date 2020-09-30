@@ -67,7 +67,7 @@ class App extends React.Component {
   }
 
   handleMenuRequest = (rc) => {
-    if (rc.requestedComponent === "log out") {
+    if (rc.requestedComponent === "Sign Out") {
       this.setState({ status: "SIGNED_OUT" })
       this.setState({ credentials: { username: "", password: "" } })
       this.setState({ requestedComponent: "login" })
@@ -85,11 +85,10 @@ class App extends React.Component {
       this.setState({ token: window.localStorage.getItem("token") })
       this.setState({ status: "ATTENDEE_SIGNED_IN" })
       this.setState({ message: "Welcome back" })
-      this.setState({ requestedComponent: "home" })
+      this.setState({ requestedComponent: "Home" })
     }
     return <>
       <div className="container">
-        <Navbar {... this.state} />
         <Controller {... this.state} />
       </div>
     </>

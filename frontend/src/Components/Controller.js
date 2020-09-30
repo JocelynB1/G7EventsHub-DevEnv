@@ -4,7 +4,8 @@ import SignupPage from './SignupPage';
 import LandingPage from '../Pages1/LandingPage';
 import BookAnEventPage from './BookAnEventPage';
 import EventTable from './EventTable';
-
+import Navbar from './Navbar';
+import Footer from './Footer';
 function Controller(props) {
   switch (props.requestedComponent) {
     case "login":
@@ -13,15 +14,25 @@ function Controller(props) {
     case "register":
       return <SignupPage {... props} />
 
-    case "home":
-      return <LandingPage {...props} />
+    case "Home":
+      return <>
+      <Navbar {...props} />
+      <LandingPage {...props} />
+      <Footer/>
+      </>
 
     case "book an event":
-      return <BookAnEventPage {...props} />
-
-    case "my events":
-      return <EventTable {...props} />
-
+      return <>
+      <Navbar {...props} />
+      <BookAnEventPage {...props} />
+      <Footer/>
+      </>
+    case "My events":
+      return<>
+      <Navbar {...props} />
+      <EventTable {...props} />
+      <Footer/>
+      </>
     default:
       return <LoginPage {... props} />
       

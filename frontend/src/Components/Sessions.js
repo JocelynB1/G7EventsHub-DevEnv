@@ -1,15 +1,16 @@
 import React from 'react'
+import MidmorningSide from './MidmorningSide'
 import AfternoonSide from './AfternoonSide'
-import EveningSide from './EveningSide'
 import MorningSide from './MorningSide'
 import './landing.css';
+import { useEffect, useState } from 'react';
 
-export default function Sessions() {
+export default function Sessions(props) {
     return (
         <div className = "sessions">
-            <MorningSide/>
-            <AfternoonSide/>
-            <EveningSide/>
+            <MorningSide  {... props} />
+            <MidmorningSide  {... props} />
+            <AfternoonSide  {... props} />
         </div>
     )
 }

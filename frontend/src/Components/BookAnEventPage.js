@@ -12,14 +12,7 @@ function BookAnEventPage(props) {
         event.preventDefault();
         const formData = new FormData(document.querySelector("#form"))
         formData.append("id_event", document.querySelector("#id_event").value)
-        formData.append("id_event1", document.querySelector("#id_event1").value)
-        formData.append("id_event2", document.querySelector("#id_event2").value)
-        formData.append("id_session", document.querySelector("#id_session").value)
-        formData.append("id_session1", document.querySelector("#id_session1").value)
-        formData.append("id_session2", document.querySelector("#id_session2").value)
         formData.append("seats", document.querySelector("#seats").value)
-        formData.append("seats1", document.querySelector("#seats1").value)
-        formData.append("seats2", document.querySelector("#seats2").value)
         let data = await fetch("http://127.0.0.1:8000/api/booking/",
             {
                 method: "POST",
@@ -39,7 +32,7 @@ function BookAnEventPage(props) {
 
             if(data.status==200){
                 props.onSuccess({
-                    requestedComponent:"my events",
+                    requestedComponent:"My events",
                     message:"Booking successful"
                 })
             }else{
@@ -72,6 +65,7 @@ function BookAnEventPage(props) {
         }
         } catch (error) { console.log(error) }
     }
+
     return (
         <>
 

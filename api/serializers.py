@@ -10,7 +10,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import password_validation 
 from django.http import JsonResponse
 from django.core import validators
-
+from django.db.models import Sum
 
 class LoginSerializer(serializers.ModelSerializer):
     """
@@ -173,9 +173,7 @@ class EventSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Event
-        fields=["id","location","name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
-
-
+        fields=["id","location","tag_line","title","session","image"]
 
         
 class BookingSerializer(serializers.ModelSerializer):
@@ -184,7 +182,7 @@ class BookingSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Booking
-        fields=["event","session","seats"]
+        fields=["event","seats"]
    
 
 class Booking1Serializer(serializers.ModelSerializer):
@@ -207,22 +205,34 @@ class MyEventSerializer(serializers.ModelSerializer):
     Used to retreive events and related information
     """
     location=serializers.SerializerMethodField()    
-    event_name=serializers.SerializerMethodField()    
     tag_line=serializers.SerializerMethodField()    
     title=serializers.SerializerMethodField()    
-    start_date=serializers.SerializerMethodField()    
-    end_date=serializers.SerializerMethodField()    
     session=serializers.SerializerMethodField()
     speaker=serializers.SerializerMethodField()
+    image= serializers.SerializerMethodField()
+    available_seats= serializers.SerializerMethodField()
 
     class Meta:
         model = Booking
-        fields=["id","speaker","location","event_name","tag_line","title","start_date","end_date","session","seats"]
+        fields=["id","speaker","location","tag_line","title","session","seats","image","available_seats"]
     def get_location(self,obj):
         return Location.objects.get(pk=obj.event.location_id).name
+    
+    def get_available_seats(self,obj):
+        total_seats=int( Location.objects.get(pk=obj.event.location.id).room_capacity)
+        booked_seats= Booking.objects.filter(event=obj.event.id).aggregate(Sum('seats'))["seats__sum"]
+        return int(total_seats)-int(booked_seats)
 
-    def get_event_name(self,obj):
-        return obj.event.name
+    def validate_seats(self,value,obj):
+        total_seats=int( Location.objects.get(pk=obj.event.location.id).room_capacity)
+        booked_seats= Booking.objects.filter(event=obj.event.id).aggregate(Sum('seats'))["seats__sum"]
+        available_seat= int(total_seats)-int(booked_seats)
+        
+        if available_seat-value<0:
+           raise serializers.ValidationError("No Seats left")
+
+        return value
+
 
     def get_speaker(self,obj):
         return obj.event.speaker.name
@@ -232,17 +242,12 @@ class MyEventSerializer(serializers.ModelSerializer):
 
     def get_title(self,obj):
         return obj.event.title
-
-    def get_start_date(self,obj):
-       return str(obj.event.start_date)+" , "+str(obj.event.start_hour)+" : "+str(obj.event.start_minutes)
-
-    def get_end_date(self,obj):
-       return str(obj.event.end_date)+" , "+str(obj.event.end_hour)+" : "+str(obj.event.end_minutes)
     
     def get_session(self,obj):
-        return obj.session.description
+        return obj.event.session
     
-    
+    def get_image(self,obj):
+        return self.context['request'].build_absolute_uri(obj.event.image.url)
    
 
 

@@ -12,7 +12,7 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(Event)        
 class EventAdmin(admin.ModelAdmin):
-    list_display=["name","tag_line","title","start_date","start_hour","start_minutes","end_date","end_hour","end_minutes"]
+    list_display=["tag_line","title","speaker","image","session"]
 
 
 @admin.register(Speaker)
@@ -25,7 +25,7 @@ class SessionAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display=["user","event","session","seats"]
+    list_display=["user","event","seats"]
 
     
 

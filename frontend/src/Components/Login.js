@@ -35,7 +35,7 @@ class Login extends React.Component {
                     token: d.token,
                     credentials: this.state.credentials,
                     status: "ATTENDEE_SIGNED_IN",
-                    requestedComponent: "home",
+                    requestedComponent: "Home",
                     message: "Successfuly logged in"
                 })
 

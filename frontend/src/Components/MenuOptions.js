@@ -10,7 +10,7 @@ class MenuOptions extends React.Component {
             credentials: { username: "", password: "" },
             status: {
                 SIGNED_OUT: ["register", "login"],
-                ATTENDEE_SIGNED_IN: ["home","book an event","my events","log out"],
+                ATTENDEE_SIGNED_IN: ["Home","My events","Sign Out"],
                 SPEAKER_SIGNED_IN: []
 
             }
@@ -20,8 +20,15 @@ class MenuOptions extends React.Component {
 
     render() {
         let status=this.state.status[this.props.status]
+        let newMenu=[]
+        //Remove seleted element
+        status.forEach(element => {
+            if(element!==this.props.requestedComponent){
+                newMenu.push(element)
+            }
+        });
         return (
-            status.map(
+            newMenu.map(
                 option => {
                     
                     return (<MenuItem key={option} onSelect={this.props.onSelect} menulabel={option} />)
