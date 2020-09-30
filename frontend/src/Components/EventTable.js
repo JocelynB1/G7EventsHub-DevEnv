@@ -38,6 +38,12 @@ function EventTable(props) {
     }, [props.token]); 
     let thead = "<thead><tr><th>Image</th><th>Location</th><th>Title</th><th>Tag Line</th><th>Speaker</th><th>Session</th><th>Seats</th></tr></thead>"
     let td = "";
+    console.log("details")
+    if(details.length===0){
+         return   <div id="table-main">
+             <h1>You have not booked any events yet!</h1>
+             </div>
+    }
     details.forEach(
         event => {
             td += `<tr><td style=" width:25%;"><img style=" width:100%; height:5%;" src=${event.image} alt=${event.title}></img></td><td>${event.location}<td>${event.title}</td><td>${event.tag_line}</td><td>${event.speaker}</td><td>${event.session}</td><td>${event.seats}</td></tr>`
