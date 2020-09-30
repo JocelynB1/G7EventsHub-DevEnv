@@ -165,20 +165,39 @@ class LocationList(ListAPIView):
     
 class MorningEventList(ListAPIView):
     serializer_class = EventSerializer
-    queryset=Event.objects.filter(session="Morning")
+    def get_queryset(self):
+        user = self.request.user
+        if Booking.objects.filter(user=user.id).filter(event__session="Morning").exists():
+            event_id=Booking.objects.filter(user=user.id).filter(event__session="Morning").first().event.id
+            return Event.objects.filter(id=event_id)
+     
+
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
     
 
 class MidmorningEventList(ListAPIView):
     serializer_class = EventSerializer
-    queryset=Event.objects.filter(session="Midmorning")
+    def get_queryset(self):
+        user = self.request.user
+        if Booking.objects.filter(user=user.id).filter(event__session="Midmorning").exists():
+            event_id=Booking.objects.filter(user=user.id).filter(event__session="Midmorning").first().event.id
+            return Event.objects.filter(id=event_id)
+            
+        return Event.objects.filter(session="Midmorning")
+
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
 
 
 class AfternoonEventList(ListAPIView):
     serializer_class = EventSerializer
-    queryset=Event.objects.filter(session="Afternoon")
+    def get_queryset(self):
+        user = self.request.user
+        if Booking.objects.filter(user=user.id).filter(event__session="Afternoon").exists():
+            event_id=Booking.objects.filter(user=user.id).filter(event__session="Afternoon").first().event.id
+            return Event.objects.filter(id=event_id)
+       
+
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]

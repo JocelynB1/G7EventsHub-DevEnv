@@ -86,17 +86,26 @@ function MorningEvents (props) {
         }
         } catch (error) { console.log(error) }
     }
+    if (events.length == 1) {
+        return (<>
+            <h2>You have been booked for the following:</h2>
+            <form id={events[0].id} >
+                <figure className={events[0].id}>
+                    <img src={events[0].image} alt={events[0].title}></img>
+                    <figcaption> <b>{events[0].tag_line}</b>
+                        <br /><i>{events[0].title}</i></figcaption>
+                </figure>
+            </form>
+        </>
+        )
 
-   let i=-1
-   let classNumbers=["one","two","three"]
-
+    }
         return (
-            events.slice(0,3).map(
+            events.map(
                 row => {
-                    i++         
                     return (
                         <form  id={row.id} onClick={(e)=>postBooking(e,row.id,row.session)}>
-                            <figure className ={classNumbers[i]}>
+                            <figure className ={row.id}>
                             <img src ={row.image} alt={row.title}></img>
                            <figcaption> <b>{row.tag_line}</b>
                             <br/><i>{row.title}</i></figcaption>
@@ -106,6 +115,8 @@ function MorningEvents (props) {
                 }
             )
         )
-    }
+    
+    return null;
+}
 
 export default MorningEvents;

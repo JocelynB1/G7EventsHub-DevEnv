@@ -10,7 +10,6 @@ export default function AfternoonSide(props) {
         <div className = "morning" >
             <h1>Afternoon Events</h1>
             <Events {... props} />
-            <a href = "/"><b>See more events....</b></a>
         </div>
     
         </>
